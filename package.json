@@ -23,6 +23,12 @@
       "@better-auth/expo": "^1.4.7",
       "drizzle-orm": "^0.45.1",
       "@types/pg": "^8.15.6"
+    },
+    "catalogs": {
+      "lingui": {
+        "@lingui/conf": "^5.7.0",
+        "@lingui/babel-plugin-lingui-macro": "^5.7.0"
+      }
     }
   },
   "type": "module",
