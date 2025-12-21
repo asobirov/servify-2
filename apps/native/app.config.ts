@@ -25,8 +25,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     usesAppleSignIn: true,
     infoPlist: {
       ITSAppUsesNonExemptEncryption: false,
-      NSAllowsArbitraryLoads:
-        process.env.NODE_ENV === "development" || undefined,
+      NSAllowsArbitraryLoads: process.env.NODE_ENV === "development" || undefined,
     },
     associatedDomains: ["webcredentials:servify.uz"],
   },
@@ -52,9 +51,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     "expo-router",
     "expo-secure-store",
     "expo-web-browser",
-    "expo-localization",
+    // "expo-localization",
     "expo-font",
-    "react-native-maps",
     [
       "expo-splash-screen",
       {
