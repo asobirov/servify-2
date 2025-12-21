@@ -18,7 +18,6 @@
     "@servify/db": "workspace:*",
     "@t3-oss/env-core": "catalog:t3-oss",
     "better-auth": "catalog:",
-    "dotenv": "catalog:",
     "zod": "catalog:"
   }
 }
