@@ -1,5 +1,5 @@
 {
-  "name": "@my-better-t-app/auth",
+  "name": "@servify/auth",
   "type": "module",
   "exports": {
     ".": {
@@ -12,13 +12,13 @@
   "scripts": {},
   "devDependencies": {
     "typescript": "catalog:",
-    "@my-better-t-app/config": "workspace:*"
+    "@servify/config": "workspace:*"
   },
   "dependencies": {
     "better-auth": "catalog:",
     "@better-auth/expo": "catalog:",
     "dotenv": "catalog:",
     "zod": "catalog:",
-    "@my-better-t-app/db": "workspace:*"
+    "@servify/db": "workspace:*"
   }
 }

@@ -35,14 +35,14 @@
     "dev:native": "turbo -F native dev",
     "dev:web": "turbo -F web dev",
     "dev:server": "turbo -F server dev",
-    "db:push": "turbo -F @my-better-t-app/db db:push",
-    "db:studio": "turbo -F @my-better-t-app/db db:studio",
-    "db:generate": "turbo -F @my-better-t-app/db db:generate",
-    "db:migrate": "turbo -F @my-better-t-app/db db:migrate",
-    "db:start": "turbo -F @my-better-t-app/db db:start",
-    "db:watch": "turbo -F @my-better-t-app/db db:watch",
-    "db:stop": "turbo -F @my-better-t-app/db db:stop",
-    "db:down": "turbo -F @my-better-t-app/db db:down"
+    "db:push": "turbo -F @servify/db db:push",
+    "db:studio": "turbo -F @servify/db db:studio",
+    "db:generate": "turbo -F @servify/db db:generate",
+    "db:migrate": "turbo -F @servify/db db:migrate",
+    "db:start": "turbo -F @servify/db db:start",
+    "db:watch": "turbo -F @servify/db db:watch",
+    "db:stop": "turbo -F @servify/db db:stop",
+    "db:down": "turbo -F @servify/db db:down"
   },
   "dependencies": {
     "dotenv": "catalog:",

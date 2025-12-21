@@ -1,5 +1,5 @@
 {
-  "name": "native",
+  "name": "@servify/native",
   "version": "1.0.0",
   "private": true,
   "main": "expo-router/entry",
@@ -54,12 +54,12 @@
     "@better-auth/expo": "catalog:",
     "dotenv": "catalog:",
     "zod": "catalog:",
-    "@my-better-t-app/api": "workspace:*"
+    "@servify/api": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^24.10.0",
     "@types/react": "~19.1.0",
     "typescript": "catalog:",
-    "@my-better-t-app/config": "workspace:*"
+    "@servify/config": "workspace:*"
   }
 }

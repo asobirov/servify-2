@@ -1,6 +1,6 @@
 import { expo } from '@better-auth/expo';
-import { db } from "@my-better-t-app/db";
-import * as schema from "@my-better-t-app/db/schema/auth";
+import { db } from "@servify/db";
+import * as schema from "@servify/db/schema/auth";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
