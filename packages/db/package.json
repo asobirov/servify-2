@@ -1,5 +1,5 @@
 {
-  "name": "@my-better-t-app/db",
+  "name": "@servify/db",
   "type": "module",
   "exports": {
     ".": {
@@ -23,7 +23,7 @@
     "drizzle-kit": "^0.31.8",
     "@types/pg": "catalog:",
     "typescript": "catalog:",
-    "@my-better-t-app/config": "workspace:*"
+    "@servify/config": "workspace:*"
   },
   "dependencies": {
     "drizzle-orm": "catalog:",

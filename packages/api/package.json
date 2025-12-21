@@ -1,5 +1,5 @@
 {
-  "name": "@my-better-t-app/api",
+  "name": "@servify/api",
   "type": "module",
   "exports": {
     ".": {
@@ -12,7 +12,7 @@
   "scripts": {},
   "devDependencies": {
     "typescript": "catalog:",
-    "@my-better-t-app/config": "workspace:*"
+    "@servify/config": "workspace:*"
   },
   "dependencies": {
     "@trpc/server": "catalog:",
@@ -24,7 +24,7 @@
     "@ai-sdk/google": "catalog:",
     "dotenv": "catalog:",
     "zod": "catalog:",
-    "@my-better-t-app/auth": "workspace:*",
-    "@my-better-t-app/db": "workspace:*"
+    "@servify/auth": "workspace:*",
+    "@servify/db": "workspace:*"
   }
 }

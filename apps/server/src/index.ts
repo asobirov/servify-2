@@ -1,9 +1,9 @@
 import "dotenv/config";
 import { google } from "@ai-sdk/google";
 import { trpcServer } from "@hono/trpc-server";
-import { createContext } from "@my-better-t-app/api/context";
-import { appRouter } from "@my-better-t-app/api/routers/index";
-import { auth } from "@my-better-t-app/auth";
+import { createContext } from "@servify/api/context";
+import { appRouter } from "@servify/api/routers/index";
+import { auth } from "@servify/auth";
 import { streamText, convertToModelMessages } from "ai";
 import { Hono } from "hono";
 import { cors } from "hono/cors";

@@ -117,7 +117,7 @@ export const providersRouter = router({
 ### Authentication
 
 - ONLY use Better Auth - never custom auth
-- Server: import from `@my-better-t-app/auth`
+- Server: import from `@servify/auth`
 - Web client: import from `@/lib/auth-client`
 - Native: import from `@/lib/auth-client`
 - Check session with `auth.api.getSession()`

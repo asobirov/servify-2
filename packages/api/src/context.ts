@@ -1,6 +1,6 @@
 import type { Context as HonoContext } from "hono";
 
-import { auth } from "@my-better-t-app/auth";
+import { auth } from "@servify/auth";
 
 export type CreateContextOptions = {
   context: HonoContext;
