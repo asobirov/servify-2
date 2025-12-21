@@ -177,12 +177,16 @@ cancelled  cancelled   cancelled
    - Quote request for complex jobs
    - Booking confirmation and status updates
 
+7. **Notifications**
+   - Push notifications (mobile via Expo)
+   - Email notifications for critical events (booking confirmed, quote received)
+   - In-app notification center
+
 ### Deferred Features (Post-MVP)
 
 - Payment processing and transactions
 - Reviews and ratings system
 - In-app messaging between customers and providers
-- Push notifications
 - Dispute resolution
 - Analytics dashboard
 - Subscription/membership plans
@@ -318,6 +322,26 @@ Country: Uzbekistan
 | Uzbek Som | UZS | soʻm | 0 (whole numbers) |
 | US Dollar | USD | $ | 2 |
 
+## Infrastructure Decisions
+
+| Component | Choice | Notes |
+|-----------|--------|-------|
+| **i18n** | Lingui | MVP includes internationalization |
+| **File Storage** | AWS S3 | Provider photos, documents, certificates |
+| **Admin Panel** | Custom (shadcn) | Verification, user management |
+| **Emails** | Resend | Transactional emails for notifications |
+| **Push Notifications** | Expo Push | Mobile push via Expo notification service |
+| **Deployment** | Docker | Hosting provider decided later |
+| **Error Tracking** | PostHog (later) | Add post-MVP |
+
+### Supported Languages (MVP)
+
+| Language | Code | Priority |
+|----------|------|----------|
+| English | en | Primary (development language) |
+| Uzbek | uz | Launch market |
+| Russian | ru | Common in Uzbekistan |
+
 ## Technical Architecture
 
 ### Database Schema Organization
@@ -335,6 +359,7 @@ packages/db/src/schema/
 ├── regions.ts           # Geographic regions with PostGIS polygons
 ├── provider-service-areas.ts  # Provider-to-region coverage mapping
 ├── customer-addresses.ts      # Customer saved addresses with coordinates
+├── notifications.ts     # In-app notifications and push tokens
 └── index.ts             # Export all schemas
 ```
 

@@ -269,6 +269,45 @@ function formatPrice(price: number, currency: "UZS" | "USD"): string {
 // formatPrice(25.50, "USD") → "$25.50"
 ```
 
+### Internationalization (Lingui)
+
+- Use Lingui for i18n across web and native apps
+- Supported locales: `en`, `uz`, `ru`
+- Default locale: `en` (development), `uz` (production)
+- Extract messages with `bun run lingui:extract`
+- Compile messages with `bun run lingui:compile`
+
+Usage:
+```typescript
+import { t, Trans } from "@lingui/macro";
+
+// In components
+<Trans>Welcome to Servify</Trans>
+
+// In code
+const message = t`Booking confirmed for ${date}`;
+
+// Plurals
+<Plural value={count} one="# provider" other="# providers" />
+```
+
+### File Storage (S3)
+
+- Use AWS S3 for file storage (photos, documents, certificates)
+- Organize by type: `providers/{id}/photos/`, `providers/{id}/documents/`
+- Generate presigned URLs for uploads
+- Store only the S3 key in database, not full URL
+- Set appropriate content-type and cache headers
+
+```typescript
+// Upload pattern
+const key = `providers/${providerId}/documents/${documentId}.pdf`;
+const presignedUrl = await getSignedUrl(s3Client, putCommand, { expiresIn: 3600 });
+
+// Retrieve pattern  
+const publicUrl = `https://${bucket}.s3.${region}.amazonaws.com/${key}`;
+```
+
 ### Date/Time & Timezone Handling
 
 **Storage:**
