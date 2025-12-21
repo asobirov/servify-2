@@ -8,7 +8,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   scheme: "servify",
   owner: "asobirov",
   orientation: "portrait",
-  icon: "./assets/icon-light.png",
+  icon: "./assets/images/icon.png",
   userInterfaceStyle: "automatic",
   updates: {
     fallbackToCacheTimeout: 0,
@@ -19,8 +19,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     bundleIdentifier: "uz.servify.app",
     supportsTablet: true,
     icon: {
-      light: "./assets/icon.png",
-      dark: "./assets/icon.png",
+      light: "./assets/images/icon.png",
+      dark: "./assets/images/icon.png",
     },
     usesAppleSignIn: true,
     infoPlist: {
@@ -32,7 +32,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   android: {
     package: "uz.servify.app",
     adaptiveIcon: {
-      foregroundImage: "./assets/icon.png",
+      foregroundImage: "./assets/images/icon.png",
       backgroundColor: "#1F104A",
     },
     edgeToEdgeEnabled: true,
@@ -57,10 +57,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       "expo-splash-screen",
       {
         backgroundColor: "#09090b",
-        image: "./assets/splash-icon.png",
+        image: "./assets/images/splash-icon.png",
         dark: {
           backgroundColor: "#ffffff",
-          image: "./assets/splash-icon.png",
+          image: "./assets/images/splash-icon.png",
         },
       },
     ],
