@@ -4,12 +4,14 @@
   "private": true,
   "main": "expo-router/entry",
   "scripts": {
+    "clean": "git clean -xdf .cache .expo .turbo android ios node_modules",
     "start": "expo start",
     "dev": "expo start --clear --ios",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "prebuild": "expo prebuild",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "lingui:extract": "lingui extract --clean"
   },
   "dependencies": {
     "@ai-sdk/react": "catalog:",
@@ -64,6 +66,7 @@
   },
   "devDependencies": {
     "@lingui/babel-plugin-lingui-macro": "catalog:lingui",
+    "@lingui/cli": "^5.7.0",
     "@lingui/conf": "catalog:lingui",
     "@lingui/metro-transformer": "catalog:lingui",
     "@servify/config": "workspace:*",
