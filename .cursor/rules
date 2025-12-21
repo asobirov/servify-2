@@ -1,0 +1,305 @@
+# Servify - Cursor AI Rules
+
+## Project Context
+
+This is **Servify**, a home services marketplace. Read `AGENTS.md` for full project documentation.
+
+## Domain Terminology (MUST USE)
+
+| Correct Term | DO NOT Use |
+|--------------|------------|
+| Provider | Worker, Employee, Contractor, Professional |
+| Customer | Client, User (when referring to service seeker), Consumer |
+| Booking | Appointment, Order, Job, Request |
+| Agency | Company, Firm, Business |
+| Availability | Slot, Schedule, Opening |
+| Service | Offering, Product, Package |
+| ServiceCategory | Category (alone when ambiguous) |
+| Region | Location, City, Area (use Region entity for geographic hierarchy) |
+| ProviderServiceArea | Coverage, Zone (junction: Provider → Region) |
+| CustomerAddress | Address, Location (customer's saved addresses) |
+| Quote | Estimate, Bid, Proposal |
+
+## Code Generation Rules
+
+### Database (Drizzle)
+
+- All schemas go in `packages/db/src/schema/`
+- Export all tables from `packages/db/src/schema/index.ts`
+- Use `pgTable` from drizzle-orm/pg-core
+- Store prices as DECIMAL (not floats) with currency code
+- Always add `createdAt` and `updatedAt` timestamps
+- Use explicit foreign key relations with `references()`
+- Add indexes for frequently queried columns
+
+Example:
+```typescript
+export const services = pgTable("services", {
+  id: text("id").primaryKey().$defaultFn(() => createId()),
+  providerId: text("provider_id").notNull().references(() => providers.id, { onDelete: "cascade" }),
+  categoryId: text("category_id").notNull().references(() => serviceCategories.id),
+  name: text("name").notNull(),
+  description: text("description"),
+  price: decimal("price", { precision: 12, scale: 2 }).notNull(),
+  currency: text("currency", { enum: ["UZS", "USD"] }).notNull().default("UZS"),
+  // MVP: defaults to customer_location, schema ready for future location types
+  locationType: text("location_type", { 
+    enum: ["customer_location", "provider_location", "remote"] 
+  }).notNull().default("customer_location"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (t) => [
+  index("services_provider_id_idx").on(t.providerId),
+  index("services_category_id_idx").on(t.categoryId),
+]);
+```
+
+### Currency Handling
+
+- Supported currencies: UZS (Uzbek Som), USD
+- Always store currency code alongside price
+- UZS uses 0 decimal places, USD uses 2
+- Provider selects currency when creating a service
+- Format prices using Intl.NumberFormat in UI
+
+### PostGIS / Location Handling
+
+- Use PostgreSQL with PostGIS extension for spatial queries
+- Regions table stores hierarchical locations (country → city → district)
+- Use GEOMETRY type with SRID 4326 (WGS84) for coordinates
+- Providers select districts from pre-defined regions
+- Customer addresses store POINT coordinates
+
+Region schema example:
+```typescript
+export const regions = pgTable("regions", {
+  id: text("id").primaryKey().$defaultFn(() => createId()),
+  name: text("name").notNull(),
+  type: text("type", { enum: ["country", "city", "district"] }).notNull(),
+  parentId: text("parent_id").references(() => regions.id),
+  boundary: geometry("boundary", { type: "Polygon", srid: 4326 }),
+  center: geometry("center", { type: "Point", srid: 4326 }),
+});
+```
+
+Customer address example:
+```typescript
+export const customerAddresses = pgTable("customer_addresses", {
+  id: text("id").primaryKey().$defaultFn(() => createId()),
+  userId: text("user_id").notNull().references(() => user.id),
+  label: text("label"),  // "Home", "Office"
+  streetAddress: text("street_address").notNull(),
+  regionId: text("region_id").references(() => regions.id),
+  coordinates: geometry("coordinates", { type: "Point", srid: 4326 }),
+  isDefault: boolean("is_default").default(false),
+});
+```
+
+### API (tRPC)
+
+- Routers go in `packages/api/src/routers/`
+- Always validate input with Zod schemas
+- Use `protectedProcedure` for authenticated routes
+- Keep procedures focused - one action per procedure
+- Return typed responses
+
+Example:
+```typescript
+export const providersRouter = router({
+  getById: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ ctx, input }) => {
+      // implementation
+    }),
+});
+```
+
+### Authentication
+
+- ONLY use Better Auth - never custom auth
+- Server: import from `@my-better-t-app/auth`
+- Web client: import from `@/lib/auth-client`
+- Native: import from `@/lib/auth-client`
+- Check session with `auth.api.getSession()`
+
+### Components (React)
+
+- Use shadcn/ui components from `@/components/ui/`
+- Keep components in `apps/web/src/components/`
+- Use kebab-case for component files (e.g., `provider-card.tsx`)
+- Colocate related components in feature folders
+
+### Forms
+
+- Use React Hook Form with Zod resolver
+- Define schemas alongside form components
+- Use shadcn Form components for consistent styling
+
+### State Management
+
+- Server state: TanStack Query via tRPC
+- Minimize client state - derive when possible
+- No Redux, Zustand, or similar unless absolutely necessary
+
+### Routes (TanStack Router)
+
+- File-based routing in `apps/web/src/routes/`
+- Dynamic params: `$paramName.tsx`
+- Nested layouts: `_layout.tsx` or folder structure
+- Use `createFileRoute` for type-safe routes
+
+## MVP Boundaries
+
+### IN SCOPE - Implement These
+- User authentication (Better Auth)
+- Provider profiles and onboarding
+- Agency management
+- Service categories and offerings
+- Provider availability/calendar
+- Search and discovery
+- Booking flow (instant + quote-based)
+
+### OUT OF SCOPE - Do Not Implement
+- Payment processing
+- Reviews and ratings
+- In-app messaging
+- Push notifications
+- Dispute resolution
+- Analytics dashboards
+- Subscription plans
+
+If asked to implement out-of-scope features, clarify they are post-MVP and suggest alternatives or stub implementations.
+
+## File Organization
+
+```
+packages/db/src/schema/     # Database schemas
+packages/api/src/routers/   # tRPC routers  
+packages/auth/src/          # Auth configuration
+apps/web/src/components/    # React components
+apps/web/src/routes/        # Page routes
+apps/web/src/lib/           # Utilities
+apps/server/src/            # Hono server
+apps/native/                # Expo React Native
+```
+
+## Error Handling
+
+- Use tRPC's built-in error handling
+- Throw `TRPCError` with appropriate codes
+- Client-side: handle errors in query/mutation callbacks
+- Show user-friendly error messages via toast (sonner)
+
+## Testing Approach
+
+- Focus on integration tests for API routes
+- Use Vitest for unit tests when needed
+- Test critical flows: auth, booking creation, search
+
+## Common Patterns
+
+### Fetching Provider with Services
+```typescript
+const provider = await db.query.providers.findFirst({
+  where: eq(providers.id, providerId),
+  with: {
+    services: true,
+    availability: true,
+    providerServiceAreas: {
+      with: { region: true },
+    },
+  },
+});
+```
+
+### Protected Route Check
+```typescript
+export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
+  if (!ctx.user) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
+  return next({ ctx: { user: ctx.user } });
+});
+```
+
+### Location-Based Queries
+
+Find providers serving a customer's address (by region):
+```typescript
+// Find providers whose service areas include the customer's district
+const providers = await db.query.providers.findMany({
+  where: exists(
+    db.select().from(providerServiceAreas)
+      .where(and(
+        eq(providerServiceAreas.providerId, providers.id),
+        eq(providerServiceAreas.regionId, customerAddress.regionId)
+      ))
+  ),
+  with: { 
+    services: true, 
+    providerServiceAreas: { with: { region: true } } 
+  },
+});
+```
+
+Find providers using PostGIS ST_Contains (for point-in-polygon):
+```sql
+-- Raw SQL for complex spatial queries
+SELECT DISTINCT p.*
+FROM providers p
+JOIN provider_service_areas psa ON psa.provider_id = p.id
+JOIN regions r ON r.id = psa.region_id
+WHERE ST_Contains(
+  r.boundary, 
+  ST_SetSRID(ST_MakePoint(:customerLng, :customerLat), 4326)
+);
+```
+
+### Currency Formatting (UI)
+```typescript
+function formatPrice(price: number, currency: "UZS" | "USD"): string {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency,
+    minimumFractionDigits: currency === "UZS" ? 0 : 2,
+    maximumFractionDigits: currency === "UZS" ? 0 : 2,
+  }).format(price);
+}
+// formatPrice(50000, "UZS") → "UZS 50,000"
+// formatPrice(25.50, "USD") → "$25.50"
+```
+
+### Date/Time & Timezone Handling
+
+**Storage:**
+- All timestamps stored in UTC in database
+- Use `timestamp with time zone` (timestamptz) in PostgreSQL
+- Provider availability stored with provider's timezone reference
+
+**Conversion:**
+- API always returns UTC timestamps
+- Client converts to user's local timezone for display
+- Use date-fns + date-fns-tz for conversions
+
+**Libraries:**
+```typescript
+import { formatInTimeZone, toZonedTime } from "date-fns-tz";
+import { format } from "date-fns";
+
+// Convert UTC to user's timezone for display
+const userTime = formatInTimeZone(
+  utcDate, 
+  userTimezone, // e.g., "Asia/Tashkent"
+  "yyyy-MM-dd HH:mm"
+);
+
+// Convert user input to UTC for storage
+const utcTime = zonedTimeToUtc(localDate, userTimezone);
+```
+
+**User timezone:**
+- Store user's timezone in profile (default: "Asia/Tashkent" for Uzbekistan)
+- Detect from browser on first visit: `Intl.DateTimeFormat().resolvedOptions().timeZone`
+
+**Uzbekistan timezone:** UTC+5 (Asia/Tashkent) - no daylight saving time
+
