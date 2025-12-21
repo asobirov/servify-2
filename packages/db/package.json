@@ -19,15 +19,16 @@
     "db:stop": "docker compose stop",
     "db:down": "docker compose down"
   },
+  "dependencies": {
+    "@t3-oss/env-core": "catalog:t3-oss",
+    "drizzle-orm": "catalog:",
+    "pg": "^8.16.3",
+    "zod": "catalog:"
+  },
   "devDependencies": {
     "drizzle-kit": "^0.31.8",
     "@types/pg": "catalog:",
     "typescript": "catalog:",
     "@servify/config": "workspace:*"
-  },
-  "dependencies": {
-    "drizzle-orm": "catalog:",
-    "pg": "^8.16.3",
-    "zod": "catalog:"
   }
 }
