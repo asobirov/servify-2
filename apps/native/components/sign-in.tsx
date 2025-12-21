@@ -43,46 +43,60 @@ function SignIn() {
   }
 
   return (
-    <Card variant="secondary" className="mt-6 p-4">
-      <Card.Title className="mb-4">Sign In</Card.Title>
+    <>
+      <Card variant="secondary" className="mt-6 p-4">
+        <Card.Title className="mb-4">Sign In</Card.Title>
 
-      {error ? (
-        <View className="mb-4 p-3 bg-danger/10 rounded-lg">
-          <Text className="text-danger text-sm">{error}</Text>
-        </View>
-      ) : null}
+        {error ? (
+          <View className="mb-4 p-3 bg-danger/10 rounded-lg">
+            <Text className="text-danger text-sm">{error}</Text>
+          </View>
+        ) : null}
 
-      <TextInput
-        className="mb-3 py-3 px-4 rounded-lg bg-surface text-foreground border border-divider"
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        placeholderTextColor={mutedColor}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
+        <TextInput
+          className="mb-3 py-3 px-4 rounded-lg bg-surface text-foreground border border-divider"
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+          placeholderTextColor={mutedColor}
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
 
-      <TextInput
-        className="mb-4 py-3 px-4 rounded-lg bg-surface text-foreground border border-divider"
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        placeholderTextColor={mutedColor}
-        secureTextEntry
-      />
+        <TextInput
+          className="mb-4 py-3 px-4 rounded-lg bg-surface text-foreground border border-divider"
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+          placeholderTextColor={mutedColor}
+          secureTextEntry
+        />
 
-      <Pressable
-        onPress={handleLogin}
-        disabled={isLoading}
-        className="bg-accent p-4 rounded-lg flex-row justify-center items-center active:opacity-70"
-      >
-        {isLoading ? (
-          <ActivityIndicator size="small" color={foregroundColor} />
-        ) : (
-          <Text className="text-foreground font-medium">Sign In</Text>
-        )}
-      </Pressable>
-    </Card>
+        <Pressable
+          onPress={handleLogin}
+          disabled={isLoading}
+          className="bg-accent p-4 rounded-lg flex-row justify-center items-center active:opacity-70"
+        >
+          {isLoading ? (
+            <ActivityIndicator size="small" color={foregroundColor} />
+          ) : (
+            <Text className="text-foreground font-medium">Sign In</Text>
+          )}
+        </Pressable>
+      </Card>
+
+      <Card>
+        <Pressable
+          onPress={() => {
+            authClient.signIn.social({
+              provider: "google",
+            });
+          }}
+        >
+          <Text>Sign In with Google</Text>
+        </Pressable>
+      </Card>
+    </>
   );
 }
 
