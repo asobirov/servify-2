@@ -4,6 +4,7 @@ import { ActivityIndicator, Text, TextInput, Pressable, View } from "react-nativ
 
 import { authClient } from "@/lib/auth-client";
 import { queryClient } from "@/utils/trpc";
+import Constants from "expo-constants";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -90,10 +91,21 @@ function SignIn() {
           onPress={() => {
             authClient.signIn.social({
               provider: "google",
+              callbackURL: `/`,
             });
           }}
         >
           <Text>Sign In with Google</Text>
+        </Pressable>
+      </Card>
+
+      <Card>
+        <Pressable
+          onPress={() => {
+            authClient.signOut();
+          }}
+        >
+          <Text>Sign Out</Text>
         </Pressable>
       </Card>
     </>
