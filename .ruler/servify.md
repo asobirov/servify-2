@@ -108,9 +108,17 @@ Servify uses a **hybrid booking model**:
 ### Quote-Based Booking
 - For complex or custom jobs
 - Customer describes the job with details/photos
-- Providers submit quotes with pricing and availability
-- Customer selects preferred quote
+- **MVP:** Single provider quote (customer requests from specific provider)
+- **Future:** Multi-provider competitive quotes (broadcast to area providers)
+- Customer accepts/rejects/negotiates the quote
 - Example: Major repairs, custom installations, large moves
+
+**MVP Quote Flow:**
+1. Customer browses providers, selects one
+2. Customer submits quote request with job details + photos
+3. Provider reviews and submits quote (price, estimated time)
+4. Customer accepts → Booking created
+5. Customer rejects → Can request from another provider
 
 ### Service Location Types
 
@@ -191,6 +199,7 @@ cancelled  cancelled   cancelled
 - Analytics dashboard
 - Subscription/membership plans
 - Referral program
+- **Multi-Provider Quotes** - Broadcast quote requests to multiple providers, customer compares and selects
 - **AI Assistant Chat** - Conversational interface to help customers discover and book services
 - **Automated Verification** - OneID integration, INN registry API, automated document verification
 
