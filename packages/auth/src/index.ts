@@ -7,7 +7,6 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg",
-
     schema: schema,
   }),
   trustedOrigins: [process.env.CORS_ORIGIN || "", "mybettertapp://", "exp://"],
@@ -21,5 +20,12 @@ export const auth = betterAuth({
       httpOnly: true,
     },
   },
-  plugins: [expo()]
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+    },
+  },
+  
+  plugins: [expo()],
 });
