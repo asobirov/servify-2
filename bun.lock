@@ -202,6 +202,7 @@
       "devDependencies": {
         "@servify/config": "workspace:*",
         "@types/pg": "catalog:",
+        "dotenv-cli": "^11.0.0",
         "drizzle-kit": "^0.31.8",
         "typescript": "catalog:",
       },
