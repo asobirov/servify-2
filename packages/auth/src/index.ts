@@ -3,8 +3,7 @@ import { db } from "@servify/db";
 import * as schema from "@servify/db/schema/auth";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-
-console.log(process.env);
+import { telegram } from "telegram-better-auth";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -29,11 +28,13 @@ export const auth = betterAuth({
     enabled: true,
   },
   advanced: {
-    defaultCookieAttributes: {
-      sameSite: "none",
-      secure: true,
-      httpOnly: true,
-    },
+    defaultCookieAttributes: process.env.NODE_ENV
+      ? {}
+      : {
+          sameSite: "none",
+          secure: true,
+          httpOnly: true,
+        },
   },
   socialProviders: {
     google: {
@@ -41,8 +42,11 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     },
   },
-  account: {
-    skipStateCookieCheck: process.env.NODE_ENV === "development",
-  },
-  plugins: [expo()],
+  plugins: [
+    expo(),
+    telegram({
+      botToken: process.env.TELEGRAM_BOT_TOKEN || "",
+      getTempEmail: (id) => `${id}@t.me`,
+    }),
+  ],
 });

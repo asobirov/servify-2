@@ -8,6 +8,7 @@ import { streamText, convertToModelMessages } from "ai";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
+import path from "path";
 
 const app = new Hono();
 
@@ -47,6 +48,10 @@ app.post("/ai", async (c) => {
 
 app.get("/", (c) => {
   return c.text("OK");
+});
+
+app.get("/telegram", async (c) => {
+  return c.html(await Bun.file(path.join(__dirname, "telegram.html")).text());
 });
 
 export default app;

@@ -64,6 +64,7 @@
         "tailwind-merge": "^3.4.0",
         "tailwind-variants": "3.1.1",
         "tailwindcss": "~4.1.17",
+        "telegram-better-auth": "^0.0.8",
         "uniwind": "^1.0.4",
         "zod": "catalog:",
       },
@@ -170,6 +171,7 @@
         "@servify/db": "workspace:*",
         "better-auth": "catalog:",
         "dotenv": "catalog:",
+        "telegram-better-auth": "^0.0.8",
         "zod": "catalog:",
       },
       "devDependencies": {
@@ -2581,6 +2583,8 @@
     "tapable": ["tapable@2.3.0", "", {}, "sha512-g9ljZiwki/LfxmQADO3dEY1CbpmXT5Hm2fJ+QaGKwSXUylMybePR7/67YW7jOrrvjEgL1Fmz5kzyAjWVWLlucg=="],
 
     "tar": ["tar@7.5.2", "", { "dependencies": { "@isaacs/fs-minipass": "^4.0.0", "chownr": "^3.0.0", "minipass": "^7.1.2", "minizlib": "^3.1.0", "yallist": "^5.0.0" } }, "sha512-7NyxrTE4Anh8km8iEy7o0QYPs+0JKBTj5ZaqHg6B39erLg0qYXN3BijtShwbsNSvQ+LN75+KV+C4QR/f6Gwnpg=="],
+
+    "telegram-better-auth": ["telegram-better-auth@0.0.8", "", { "dependencies": { "zod": "^4.1.13" }, "peerDependencies": { "better-auth": "^1.4.3" } }, "sha512-fxP+gOEj04MFPhbLa+yCuiZtIp/GIzSeIZJlQ/s4OWbmBeymuM4gKBQ8csoDrfbzVNP2I0suVChzR3jKBm/Z1g=="],
 
     "temp-dir": ["temp-dir@2.0.0", "", {}, "sha512-aoBAniQmmwtcKp/7BzsH8Cxzv8OL736p7v1ihGb5e9DJ9kTwGWHrQrVB5+lfVDzfGrdRzXch+ig7LHaY1JTOrg=="],
 
