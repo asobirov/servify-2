@@ -1,15 +1,14 @@
 {
   "name": "@servify/auth",
+  "private": true,
   "type": "module",
   "exports": {
-    ".": {
-      "default": "./src/index.ts"
-    },
-    "./*": {
-      "default": "./src/*.ts"
-    }
+    ".": "./src/index.ts",
+    "./env": "./env.ts"
   },
-  "scripts": {},
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo dist node_modules"
+  },
   "devDependencies": {
     "typescript": "catalog:",
     "@servify/config": "workspace:*"
@@ -17,8 +16,8 @@
   "dependencies": {
     "@better-auth/expo": "catalog:",
     "@servify/db": "workspace:*",
+    "@t3-oss/env-core": "catalog:t3-oss",
     "better-auth": "catalog:",
-    "dotenv": "catalog:",
     "telegram-better-auth": "^0.0.8",
     "zod": "catalog:"
   }

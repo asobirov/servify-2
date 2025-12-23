@@ -439,6 +439,7 @@ apps/web/src/routes/
 5. **State**: TanStack Query for server state, minimal client state
 6. **Routing**: TanStack Router with type-safe routes
 7. **Date/Time**: Store all times in UTC, convert to local timezone only in UI
+8. **i18n**: Use Lingui for all user-facing text (see i18n.md for details)
 
 ### Timezone Handling
 
@@ -466,4 +467,5 @@ apps/web/src/routes/
 6. **DO NOT** implement payments in MVP - defer to post-MVP
 7. **DO NOT** add review/rating features in MVP - defer to post-MVP
 8. **DO NOT** build custom calendar - use proper date-fns/temporal utilities
+9. **DO NOT** hardcode user-facing text - always use Lingui (see i18n.md)
 

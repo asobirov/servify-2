@@ -22,7 +22,6 @@
     "@types/pg": "catalog:",
     "ai": "catalog:",
     "@ai-sdk/google": "catalog:",
-    "dotenv": "catalog:",
     "zod": "catalog:",
     "@servify/auth": "workspace:*",
     "@servify/db": "workspace:*"
