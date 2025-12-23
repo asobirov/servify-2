@@ -3,9 +3,10 @@ import { createAuthClient } from "better-auth/react";
 import Constants from "expo-constants";
 import * as SecureStore from "expo-secure-store";
 import { telegramClient } from "@servify/auth/plugins/telegram/client";
+import { env } from "@/env";
 
 export const authClient = createAuthClient({
-  baseURL: process.env.EXPO_PUBLIC_SERVER_URL,
+  baseURL: env.EXPO_PUBLIC_SERVER_URL,
   plugins: [
     expoClient({
       scheme: Constants.expoConfig?.scheme as string,

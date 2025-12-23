@@ -9,7 +9,9 @@ export const env = createEnv({
   },
 
   clientPrefix: "EXPO_PUBLIC",
-  client: {},
+  client: {
+    EXPO_PUBLIC_SERVER_URL: z.string().min(1),
+  },
 
   runtimeEnv: process.env,
 });
