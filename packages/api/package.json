@@ -10,20 +10,20 @@
     }
   },
   "scripts": {},
-  "devDependencies": {
-    "typescript": "catalog:",
-    "@servify/config": "workspace:*"
-  },
   "dependencies": {
-    "@trpc/server": "catalog:",
+    "@ai-sdk/google": "catalog:",
+    "@servify/auth": "workspace:*",
+    "@servify/db": "workspace:*",
     "@trpc/client": "catalog:",
-    "hono": "catalog:",
-    "drizzle-orm": "catalog:",
+    "@trpc/server": "catalog:",
     "@types/pg": "catalog:",
     "ai": "catalog:",
-    "@ai-sdk/google": "catalog:",
-    "zod": "catalog:",
-    "@servify/auth": "workspace:*",
-    "@servify/db": "workspace:*"
+    "drizzle-orm": "catalog:",
+    "hono": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@servify/config": "workspace:*",
+    "typescript": "catalog:"
   }
 }

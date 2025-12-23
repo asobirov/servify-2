@@ -3,9 +3,7 @@ import { z } from "zod/v4";
 
 export const env = createEnv({
   server: {
-    NODE_ENV: z
-      .enum(["development", "production", "test"])
-      .default("development"),
+    NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
   },
 
   clientPrefix: "EXPO_PUBLIC",

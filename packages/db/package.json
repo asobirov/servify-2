@@ -23,9 +23,9 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.31.8",
+    "@servify/config": "workspace:*",
     "@types/pg": "catalog:",
-    "typescript": "catalog:",
-    "@servify/config": "workspace:*"
+    "drizzle-kit": "^0.31.8",
+    "typescript": "catalog:"
   }
 }

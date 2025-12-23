@@ -19,7 +19,7 @@ export const env = createEnv({
 
     AUTH_TELEGRAM_BOT_TOKEN: z.string().min(1),
 
-    NODE_ENV: z.enum(["development", "production"]).optional(),
+    NODE_ENV: z.enum(["development", "production"]).default("development"),
   },
   runtimeEnv: process.env,
   skipValidation: !!process.env.CI || process.env.npm_lifecycle_event === "lint",

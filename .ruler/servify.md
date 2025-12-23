@@ -7,12 +7,14 @@ Servify is a two-sided marketplace platform connecting customers with trusted ho
 ## User Personas
 
 ### Customer
+
 - Homeowners or renters seeking professional home services
 - Can search, filter, and browse available services
 - Books services via instant booking or quote requests
 - Manages their bookings and service history
 
 ### Provider
+
 - Individual professionals offering home services
 - Creates and manages their profile and service offerings
 - Sets availability and service areas
@@ -20,6 +22,7 @@ Servify is a two-sided marketplace platform connecting customers with trusted ho
 - Can operate independently or join an agency
 
 ### Agency
+
 - Businesses managing multiple service providers
 - Has an agency profile with branding
 - Manages team of providers
@@ -30,19 +33,19 @@ Servify is a two-sided marketplace platform connecting customers with trusted ho
 
 ### Core Entities
 
-| Entity | Description |
-|--------|-------------|
-| User | Base authentication entity (via Better Auth). Can be customer, provider, or agency admin |
-| Provider | Professional profile with services, availability, and service areas |
-| Agency | Business entity that manages multiple providers |
-| ServiceCategory | Top-level grouping (Cleaning, Handyman, Plumbing, etc.) |
-| Service | Specific service a provider offers with pricing |
-| Availability | Provider's calendar slots and recurring schedules |
-| Region | Hierarchical geographic entity (country → city → district) with PostGIS polygon |
-| ProviderServiceArea | Junction linking Provider to Region(s) they serve |
-| CustomerAddress | Customer's saved addresses with coordinates (multiple per customer) |
-| Booking | Service request from customer to provider |
-| Quote | Price estimate for quote-based bookings |
+| Entity              | Description                                                                              |
+| ------------------- | ---------------------------------------------------------------------------------------- |
+| User                | Base authentication entity (via Better Auth). Can be customer, provider, or agency admin |
+| Provider            | Professional profile with services, availability, and service areas                      |
+| Agency              | Business entity that manages multiple providers                                          |
+| ServiceCategory     | Top-level grouping (Cleaning, Handyman, Plumbing, etc.)                                  |
+| Service             | Specific service a provider offers with pricing                                          |
+| Availability        | Provider's calendar slots and recurring schedules                                        |
+| Region              | Hierarchical geographic entity (country → city → district) with PostGIS polygon          |
+| ProviderServiceArea | Junction linking Provider to Region(s) they serve                                        |
+| CustomerAddress     | Customer's saved addresses with coordinates (multiple per customer)                      |
+| Booking             | Service request from customer to provider                                                |
+| Quote               | Price estimate for quote-based bookings                                                  |
 
 ### Entity Relationships
 
@@ -66,46 +69,48 @@ Servify is a two-sided marketplace platform connecting customers with trusted ho
 
 ### MVP Categories
 
-| Category | Key Services |
-|----------|--------------|
-| Cleaning | House cleaning, deep cleaning, move-out cleaning, office cleaning |
+| Category | Key Services                                                       |
+| -------- | ------------------------------------------------------------------ |
+| Cleaning | House cleaning, deep cleaning, move-out cleaning, office cleaning  |
 | Handyman | General repairs, mounting/hanging, furniture assembly, minor fixes |
 
 ### Future Expansion (Provider Goes to Customer)
 
-| Category | Key Services |
-|----------|--------------|
-| Plumbing | Leak repair, pipe installation, drain cleaning, fixture installation |
-| Electrical | Wiring, outlet installation, fixture installation, troubleshooting |
-| Moving | Local moves, hauling, packing services, furniture moving |
-| Landscaping | Lawn care, gardening, tree trimming, outdoor maintenance |
-| Painting | Interior painting, exterior painting, touch-ups |
-| Appliance Repair | Washer/dryer, refrigerator, dishwasher, HVAC |
-| Pest Control | Extermination, fumigation, rodent removal |
-| Pet Services | Pet sitting, dog walking (at customer's home) |
+| Category         | Key Services                                                         |
+| ---------------- | -------------------------------------------------------------------- |
+| Plumbing         | Leak repair, pipe installation, drain cleaning, fixture installation |
+| Electrical       | Wiring, outlet installation, fixture installation, troubleshooting   |
+| Moving           | Local moves, hauling, packing services, furniture moving             |
+| Landscaping      | Lawn care, gardening, tree trimming, outdoor maintenance             |
+| Painting         | Interior painting, exterior painting, touch-ups                      |
+| Appliance Repair | Washer/dryer, refrigerator, dishwasher, HVAC                         |
+| Pest Control     | Extermination, fumigation, rodent removal                            |
+| Pet Services     | Pet sitting, dog walking (at customer's home)                        |
 
 ### Future Expansion (Customer Goes to Provider)
 
-| Category | Key Services |
-|----------|--------------|
-| Beauty/Salon | Haircuts, styling, coloring, barbering |
-| Spa/Wellness | Massage, facials, body treatments |
-| Nails | Manicure, pedicure, nail art |
-| Fitness | Personal training, yoga, dance lessons |
-| Tailoring | Alterations, custom clothing, repairs |
-| Auto Services | Car wash, detailing, oil change |
-| Electronics Repair | Phone repair, computer service |
+| Category           | Key Services                           |
+| ------------------ | -------------------------------------- |
+| Beauty/Salon       | Haircuts, styling, coloring, barbering |
+| Spa/Wellness       | Massage, facials, body treatments      |
+| Nails              | Manicure, pedicure, nail art           |
+| Fitness            | Personal training, yoga, dance lessons |
+| Tailoring          | Alterations, custom clothing, repairs  |
+| Auto Services      | Car wash, detailing, oil change        |
+| Electronics Repair | Phone repair, computer service         |
 
 ## Booking Model
 
 Servify uses a **hybrid booking model**:
 
 ### Instant Booking
+
 - For standardized services with fixed pricing
 - Customer selects time slot, provider confirms
 - Example: Regular house cleaning, furniture assembly
 
 ### Quote-Based Booking
+
 - For complex or custom jobs
 - Customer describes the job with details/photos
 - **MVP:** Single provider quote (customer requests from specific provider)
@@ -114,6 +119,7 @@ Servify uses a **hybrid booking model**:
 - Example: Major repairs, custom installations, large moves
 
 **MVP Quote Flow:**
+
 1. Customer browses providers, selects one
 2. Customer submits quote request with job details + photos
 3. Provider reviews and submits quote (price, estimated time)
@@ -122,25 +128,26 @@ Servify uses a **hybrid booking model**:
 
 ### Service Location Types
 
-| Type | Description | MVP Status |
-|------|-------------|------------|
-| `customer_location` | Provider travels to customer | **MVP Focus** |
+| Type                | Description                  | MVP Status            |
+| ------------------- | ---------------------------- | --------------------- |
+| `customer_location` | Provider travels to customer | **MVP Focus**         |
 | `provider_location` | Customer travels to provider | Future (schema ready) |
-| `remote` | Virtual/online service | Future |
+| `remote`            | Virtual/online service       | Future                |
 
 **MVP Implementation**: All services default to `customer_location`. Schema includes `locationType` field for future expansion to salon, workshop, and studio-based services.
 
 ### Booking Status Lifecycle
 
-| Status | Description | Next States |
-|--------|-------------|-------------|
-| `pending` | Awaiting provider confirmation | `confirmed`, `cancelled` |
-| `confirmed` | Provider accepted, scheduled | `in_progress`, `cancelled` |
-| `in_progress` | Service being performed | `completed`, `cancelled` |
-| `completed` | Service finished successfully | - |
-| `cancelled` | Cancelled by customer or provider | - |
+| Status        | Description                       | Next States                |
+| ------------- | --------------------------------- | -------------------------- |
+| `pending`     | Awaiting provider confirmation    | `confirmed`, `cancelled`   |
+| `confirmed`   | Provider accepted, scheduled      | `in_progress`, `cancelled` |
+| `in_progress` | Service being performed           | `completed`, `cancelled`   |
+| `completed`   | Service finished successfully     | -                          |
+| `cancelled`   | Cancelled by customer or provider | -                          |
 
 **Status Flow:**
+
 ```
 pending → confirmed → in_progress → completed
    ↓          ↓            ↓
@@ -207,15 +214,16 @@ cancelled  cancelled   cancelled
 
 ### MVP Approach (Manual Review)
 
-| Status | Description | Can Receive Bookings? |
-|--------|-------------|----------------------|
-| `unverified` | Just signed up, no documents | No |
-| `pending` | Documents uploaded, awaiting review | No |
-| `verified` | Admin approved | Yes |
-| `rejected` | Admin rejected, needs resubmission | No |
-| `suspended` | Temporarily disabled | No |
+| Status       | Description                         | Can Receive Bookings? |
+| ------------ | ----------------------------------- | --------------------- |
+| `unverified` | Just signed up, no documents        | No                    |
+| `pending`    | Documents uploaded, awaiting review | No                    |
+| `verified`   | Admin approved                      | Yes                   |
+| `rejected`   | Admin rejected, needs resubmission  | No                    |
+| `suspended`  | Temporarily disabled                | No                    |
 
 **MVP Flow:**
+
 1. Provider signs up → status: `unverified`
 2. Provider uploads required documents (ID, licenses)
 3. Status changes to `pending`
@@ -224,30 +232,33 @@ cancelled  cancelled   cancelled
 6. Admin rejects → status: `rejected`, provider notified to resubmit
 
 **Required Documents (MVP):**
+
 - Government-issued ID (passport or ID card)
 - Self-employment certificate or business registration
 - Professional license (for regulated services like electrical, plumbing)
 
 ### Future Verification (Post-MVP)
 
-| Integration | Purpose |
-|-------------|---------|
-| **OneID** | Uzbekistan national digital identity verification |
-| **INN/STIR Registry** | Verify tax registration status |
-| **OCR + AI** | Automated document validation |
-| **Third-party KYC** | Sumsub, Shufti Pro for identity verification |
-| **Background checks** | Criminal record verification (if available) |
+| Integration           | Purpose                                           |
+| --------------------- | ------------------------------------------------- |
+| **OneID**             | Uzbekistan national digital identity verification |
+| **INN/STIR Registry** | Verify tax registration status                    |
+| **OCR + AI**          | Automated document validation                     |
+| **Third-party KYC**   | Sumsub, Shufti Pro for identity verification      |
+| **Background checks** | Criminal record verification (if available)       |
 
 ### AI Assistant (Post-MVP)
 
 An AI-powered chat interface that helps customers find and book services conversationally.
 
 **How it works:**
+
 - Uses existing tRPC procedures as AI function calls
 - Leverages Google AI SDK (already integrated)
 - Generates contextual UI components based on conversation
 
 **Example flow:**
+
 ```
 Customer: "I need someone to fix a leaky faucet in Yunusabad"
 AI: [Calls search.findProviders({ category: "plumbing", region: "yunusabad" })]
@@ -272,18 +283,18 @@ AI: "They have slots at 9am, 10am, and 11am. Which works for you?"
 
 Location and discovery enhancements to explore post-MVP:
 
-| Feature | Description |
-|---------|-------------|
-| Expand service area prompt | Suggest providers add nearby districts when they get requests from areas they don't serve |
-| Heat map for providers | Show where demand is high but provider supply is low |
-| Travel time estimates | Calculate real road distance/time, not straight-line distance |
-| "Currently nearby" badge | Show if provider is currently working in customer's area (live location opt-in) |
-| Address verification | Confirm map pin matches the entered street address |
-| Provider distance indicator | Show customer how far provider will travel ("Provider is ~5km away") |
-| Smart suggestions | "Providers who serve your area also serve these nearby areas" |
-| Coverage visualization | Map view showing provider's full service area coverage |
-| Popular times | Show busy/available times based on historical booking data |
-| Preferred providers | Let customers save favorite providers for quick rebooking |
+| Feature                     | Description                                                                               |
+| --------------------------- | ----------------------------------------------------------------------------------------- |
+| Expand service area prompt  | Suggest providers add nearby districts when they get requests from areas they don't serve |
+| Heat map for providers      | Show where demand is high but provider supply is low                                      |
+| Travel time estimates       | Calculate real road distance/time, not straight-line distance                             |
+| "Currently nearby" badge    | Show if provider is currently working in customer's area (live location opt-in)           |
+| Address verification        | Confirm map pin matches the entered street address                                        |
+| Provider distance indicator | Show customer how far provider will travel ("Provider is ~5km away")                      |
+| Smart suggestions           | "Providers who serve your area also serve these nearby areas"                             |
+| Coverage visualization      | Map view showing provider's full service area coverage                                    |
+| Popular times               | Show busy/available times based on historical booking data                                |
+| Preferred providers         | Let customers save favorite providers for quick rebooking                                 |
 
 ## Geographic Scope
 
@@ -326,30 +337,30 @@ Country: Uzbekistan
 - **Storage**: DECIMAL type for precision (not floats)
 - **Future**: Extensible for other countries/currencies
 
-| Currency | Code | Symbol | Decimal Places |
-|----------|------|--------|----------------|
-| Uzbek Som | UZS | soʻm | 0 (whole numbers) |
-| US Dollar | USD | $ | 2 |
+| Currency  | Code | Symbol | Decimal Places    |
+| --------- | ---- | ------ | ----------------- |
+| Uzbek Som | UZS  | soʻm   | 0 (whole numbers) |
+| US Dollar | USD  | $      | 2                 |
 
 ## Infrastructure Decisions
 
-| Component | Choice | Notes |
-|-----------|--------|-------|
-| **i18n** | Lingui | MVP includes internationalization |
-| **File Storage** | AWS S3 | Provider photos, documents, certificates |
-| **Admin Panel** | Custom (shadcn) | Verification, user management |
-| **Emails** | Resend | Transactional emails for notifications |
-| **Push Notifications** | Expo Push | Mobile push via Expo notification service |
-| **Deployment** | Docker | Hosting provider decided later |
-| **Error Tracking** | PostHog (later) | Add post-MVP |
+| Component              | Choice          | Notes                                     |
+| ---------------------- | --------------- | ----------------------------------------- |
+| **i18n**               | Lingui          | MVP includes internationalization         |
+| **File Storage**       | AWS S3          | Provider photos, documents, certificates  |
+| **Admin Panel**        | Custom (shadcn) | Verification, user management             |
+| **Emails**             | Resend          | Transactional emails for notifications    |
+| **Push Notifications** | Expo Push       | Mobile push via Expo notification service |
+| **Deployment**         | Docker          | Hosting provider decided later            |
+| **Error Tracking**     | PostHog (later) | Add post-MVP                              |
 
 ### Supported Languages (MVP)
 
-| Language | Code | Priority |
-|----------|------|----------|
-| English | en | Primary (development language) |
-| Uzbek | uz | Launch market |
-| Russian | ru | Common in Uzbekistan |
+| Language | Code | Priority                       |
+| -------- | ---- | ------------------------------ |
+| English  | en   | Primary (development language) |
+| Uzbek    | uz   | Launch market                  |
+| Russian  | ru   | Common in Uzbekistan           |
 
 ## Technical Architecture
 
@@ -422,13 +433,13 @@ apps/web/src/routes/
 
 ### Naming Conventions
 
-| Concept | Term to Use | NOT |
-|---------|-------------|-----|
-| Service professional | Provider | Worker, Employee, Contractor |
-| Service requester | Customer | Client, User, Consumer |
-| Service request | Booking | Appointment, Order, Job |
-| Provider group | Agency | Company, Firm, Business |
-| Time slot | Availability | Slot, Schedule, Opening |
+| Concept              | Term to Use  | NOT                          |
+| -------------------- | ------------ | ---------------------------- |
+| Service professional | Provider     | Worker, Employee, Contractor |
+| Service requester    | Customer     | Client, User, Consumer       |
+| Service request      | Booking      | Appointment, Order, Job      |
+| Provider group       | Agency       | Company, Firm, Business      |
+| Time slot            | Availability | Slot, Schedule, Opening      |
 
 ### Code Patterns
 
@@ -468,4 +479,3 @@ apps/web/src/routes/
 7. **DO NOT** add review/rating features in MVP - defer to post-MVP
 8. **DO NOT** build custom calendar - use proper date-fns/temporal utilities
 9. **DO NOT** hardcode user-facing text - always use Lingui (see i18n.md)
-

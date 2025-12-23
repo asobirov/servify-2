@@ -1,20 +1,20 @@
 {
-    "name": "@servify/i18n",
-    "type": "module",
-    "exports": {
-        "./base": "./src/base.ts",
-        "./languages": "./src/languages.ts"
-    },
-    "scripts": {
-        "clean": "git clean -xdf .cache .turbo dist node_modules",
-        "dev": "tsc",
-        "format": "prettier --check . --ignore-path ../../.gitignore",
-        "lint": "eslint",
-        "typecheck": "tsc --noEmit --emitDeclarationOnly false"
-    },
-    "devDependencies": {
-        "@lingui/conf": "catalog:lingui",
-        "@servify/config": "workspace:*",
-        "typescript": "catalog:"
-    }
+  "name": "@servify/i18n",
+  "type": "module",
+  "exports": {
+    "./base": "./src/base.ts",
+    "./languages": "./src/languages.ts"
+  },
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "devDependencies": {
+    "@lingui/conf": "catalog:lingui",
+    "@servify/config": "workspace:*",
+    "typescript": "catalog:"
+  }
 }

@@ -5,7 +5,8 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/env": ["./env.ts"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx"

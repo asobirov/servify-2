@@ -1,18 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Telegram Authentication</title>
-</head>
-<body>
-  Redirecting...
-  <script>
-    window.onload = () => {
-      const tgAuthResult = window.location.hash.replace("#tgAuthResult=", "");
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Telegram Authentication</title>
+  </head>
+  <body>
+    Redirecting...
+    <script>
+      window.onload = () => {
+        const tgAuthResult = window.location.hash.replace("#tgAuthResult=", "");
 
-      window.location.href = `servify://servify?tgAuthResult=${tgAuthResult}`;
-    }
-  </script>
-</body>
+        window.location.href = `servify://servify?tgAuthResult=${tgAuthResult}`;
+      }
+    </script>
+  </body>
 </html>

@@ -1,10 +1,10 @@
-import type { BetterAuthPluginDBSchema } from 'better-auth/db';
+import type { BetterAuthPluginDBSchema } from "better-auth/db";
 
 export const schema = {
   user: {
     fields: {
       username: {
-        type: 'string',
+        type: "string",
         required: false,
         sortable: true,
         unique: true,
