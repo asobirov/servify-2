@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 
-import { trpc } from "@/utils/trpc";
+import { useTRPC } from "@/utils/trpc";
 
 export const Route = createFileRoute("/")({
   component: HomeComponent,
@@ -24,6 +24,7 @@ const TITLE_TEXT = `
  `;
 
 function HomeComponent() {
+  const trpc = useTRPC();
   const healthCheck = useQuery(trpc.healthCheck.queryOptions());
 
   return (
