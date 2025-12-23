@@ -1,24 +1,23 @@
 {
   "name": "@servify/auth",
+  "private": true,
   "type": "module",
   "exports": {
-    ".": {
-      "default": "./src/index.ts"
-    },
-    "./*": {
-      "default": "./src/*.ts"
-    }
+    ".": "./src/index.ts",
+    "./env": "./env.ts"
   },
-  "scripts": {},
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo dist node_modules"
+  },
   "devDependencies": {
     "typescript": "catalog:",
     "@servify/config": "workspace:*"
   },
   "dependencies": {
-    "better-auth": "catalog:",
     "@better-auth/expo": "catalog:",
-    "dotenv": "catalog:",
-    "zod": "catalog:",
-    "@servify/db": "workspace:*"
+    "@servify/db": "workspace:*",
+    "@t3-oss/env-core": "catalog:t3-oss",
+    "better-auth": "catalog:",
+    "zod": "catalog:"
   }
 }

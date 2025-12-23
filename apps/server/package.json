@@ -3,11 +3,12 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "build": "tsdown",
+    "build": "bun with-env bun tsdown",
     "check-types": "tsc -b",
-    "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
-    "dev": "bun run --hot src/index.ts",
-    "start": "bun run dist/index.js"
+    "compile": "bun with-env bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
+    "dev": "bun with-env bun --hot src/index.ts",
+    "start": "bun with-env bun dist/index.js",
+    "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
     "hono": "catalog:",
@@ -16,7 +17,6 @@
     "better-auth": "catalog:",
     "ai": "catalog:",
     "@ai-sdk/google": "catalog:",
-    "dotenv": "catalog:",
     "zod": "catalog:",
     "@servify/api": "workspace:*",
     "@servify/auth": "workspace:*",

@@ -7,7 +7,7 @@
       "packages/*"
     ],
     "catalog": {
-      "dotenv": "^17.2.2",
+      "dotenv-cli": "^11.0.0",
       "zod": "^4.1.13",
       "typescript": "^5",
       "@types/bun": "^1.3.4",
@@ -31,6 +31,9 @@
         "@lingui/core": "^5.7.0",
         "@lingui/react": "^5.7.0",
         "@lingui/metro-transformer": "^5.7.0"
+      },
+      "t3-oss": {
+        "@t3-oss/env-core": "^0.13.10"
       }
     }
   },
@@ -54,15 +57,15 @@
     "db:down": "turbo -F @servify/db db:down"
   },
   "dependencies": {
-    "dotenv": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "turbo": "^2.6.3",
-    "oxlint": "^1.34.0",
+    "@types/bun": "catalog:",
+    "dotenv-cli": "catalog:",
     "oxfmt": "^0.19.0",
-    "typescript": "catalog:",
-    "@types/bun": "catalog:"
+    "oxlint": "^1.34.0",
+    "turbo": "^2.6.3",
+    "typescript": "catalog:"
   },
   "packageManager": "bun@1.3.4"
 }

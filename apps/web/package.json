@@ -34,7 +34,6 @@
     "@ai-sdk/react": "catalog:",
     "streamdown": "^1.6.10",
     "better-auth": "catalog:",
-    "dotenv": "catalog:",
     "zod": "catalog:",
     "@servify/api": "workspace:*",
     "@servify/auth": "workspace:*"
