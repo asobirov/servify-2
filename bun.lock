@@ -93,6 +93,7 @@
         "@servify/api": "workspace:*",
         "@servify/auth": "workspace:*",
         "@servify/db": "workspace:*",
+        "@t3-oss/env-core": "catalog:t3-oss",
         "@trpc/server": "catalog:",
         "ai": "catalog:",
         "better-auth": "catalog:",

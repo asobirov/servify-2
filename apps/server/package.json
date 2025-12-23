@@ -20,7 +20,8 @@
     "zod": "catalog:",
     "@servify/api": "workspace:*",
     "@servify/auth": "workspace:*",
-    "@servify/db": "workspace:*"
+    "@servify/db": "workspace:*",
+    "@t3-oss/env-core": "catalog:t3-oss"
   },
   "devDependencies": {
     "@types/bun": "catalog:",

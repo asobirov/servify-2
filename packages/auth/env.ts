@@ -8,9 +8,12 @@ export function authEnv() {
     server: {
       AUTH_GOOGLE_CLIENT_ID: z.string().min(1),
       AUTH_GOOGLE_CLIENT_SECRET: z.string().min(1),
-
+      AUTH_TELEGRAM_BOT_TOKEN: z.string().min(1),
+      CORS_ORIGIN: z.string().min(1),
       AUTH_SECRET:
         process.env.NODE_ENV === "production" ? z.string().min(1) : z.string().min(1).optional(),
+      BETTER_AUTH_SECRET: z.string().min(1),
+      BETTER_AUTH_URL: z.string().min(1),
 
       NODE_ENV: z.enum(["development", "production"]).optional(),
     },
