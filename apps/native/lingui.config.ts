@@ -5,7 +5,7 @@ export default defineConfig({
   ...baseConfig,
   catalogs: [
     {
-      path: "locale/locales/{locale}/messages",
+      path: "src/locale/locales/{locale}/messages",
       include: ["src"],
       exclude: ["**/node_modules/**"],
     },
