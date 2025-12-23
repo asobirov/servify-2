@@ -5,13 +5,14 @@
   "main": "expo-router/entry",
   "scripts": {
     "clean": "git clean -xdf .cache .expo .turbo android ios node_modules",
-    "start": "expo start",
-    "dev": "expo start --clear --ios",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
-    "prebuild": "expo prebuild",
-    "web": "expo start --web",
-    "lingui:extract": "lingui extract --clean"
+    "start": "bun with-env bun expo start",
+    "dev": "bun with-env bun expo start --clear --ios",
+    "android": "bun with-env bun expo run:android",
+    "ios": "bun with-env bun expo run:ios",
+    "prebuild": "bun with-env bun expo prebuild",
+    "web": "bun with-env bun expo start --web",
+    "lingui:extract": "bun with-env lingui extract --clean",
+    "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
     "@ai-sdk/react": "catalog:",
@@ -26,6 +27,7 @@
     "@servify/api": "workspace:*",
     "@servify/i18n": "workspace:*",
     "@stardazed/streams-text-encoding": "^1.0.2",
+    "@t3-oss/env-core": "^0.13.10",
     "@tanstack/react-query": "catalog:",
     "@trpc/client": "catalog:",
     "@trpc/server": "catalog:",

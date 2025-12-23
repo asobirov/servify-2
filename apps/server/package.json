@@ -11,21 +11,22 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "hono": "catalog:",
-    "@trpc/server": "catalog:",
-    "@hono/trpc-server": "^0.4.0",
-    "better-auth": "catalog:",
-    "ai": "catalog:",
     "@ai-sdk/google": "catalog:",
-    "zod": "catalog:",
+    "@hono/trpc-server": "^0.4.0",
     "@servify/api": "workspace:*",
     "@servify/auth": "workspace:*",
-    "@servify/db": "workspace:*"
+    "@servify/db": "workspace:*",
+    "@t3-oss/env-core": "catalog:t3-oss",
+    "@trpc/server": "catalog:",
+    "ai": "catalog:",
+    "better-auth": "catalog:",
+    "hono": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
+    "@servify/config": "workspace:*",
     "@types/bun": "catalog:",
-    "typescript": "catalog:",
     "tsdown": "^0.16.5",
-    "@servify/config": "workspace:*"
+    "typescript": "catalog:"
   }
 }

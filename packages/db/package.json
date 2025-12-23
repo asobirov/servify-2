@@ -2,22 +2,20 @@
   "name": "@servify/db",
   "type": "module",
   "exports": {
-    ".": {
-      "default": "./src/index.ts"
-    },
-    "./*": {
-      "default": "./src/*.ts"
-    }
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./env": "./env.ts"
   },
   "scripts": {
-    "db:push": "drizzle-kit push",
-    "db:generate": "drizzle-kit generate",
-    "db:studio": "drizzle-kit studio",
-    "db:migrate": "drizzle-kit migrate",
-    "db:start": "docker compose up -d",
-    "db:watch": "docker compose up",
-    "db:stop": "docker compose stop",
-    "db:down": "docker compose down"
+    "db:push": "bun with-env bun drizzle-kit push",
+    "db:generate": "bun with-env bun drizzle-kit generate",
+    "db:studio": "bun with-env bun drizzle-kit studio",
+    "db:migrate": "bun with-env bun drizzle-kit migrate",
+    "db:start": "bun with-env bun docker compose up -d",
+    "db:watch": "bun with-env bun docker compose up",
+    "db:stop": "bun with-env bun docker compose stop",
+    "db:down": "bun with-env bun docker compose down",
+    "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
     "@t3-oss/env-core": "catalog:t3-oss",
@@ -26,9 +24,10 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.31.8",
+    "@servify/config": "workspace:*",
     "@types/pg": "catalog:",
-    "typescript": "catalog:",
-    "@servify/config": "workspace:*"
+    "dotenv-cli": "catalog:",
+    "drizzle-kit": "^0.31.8",
+    "typescript": "catalog:"
   }
 }

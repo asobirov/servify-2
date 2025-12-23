@@ -18,8 +18,7 @@ const getSystemLanguage = () => {
   try {
     const deviceLocales = getLocales();
     const deviceLanguage = deviceLocales.find(
-      (locale) =>
-        locale.languageCode && SUPPORTED_LOCALES.has(locale.languageCode),
+      (locale) => locale.languageCode && SUPPORTED_LOCALES.has(locale.languageCode),
     );
 
     return (deviceLanguage?.languageCode ?? "en") as SupportedLocales;

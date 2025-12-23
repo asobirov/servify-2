@@ -9,23 +9,14 @@
   "orm": "drizzle",
   "backend": "hono",
   "runtime": "bun",
-  "frontend": [
-    "tanstack-router",
-    "native-uniwind"
-  ],
-  "addons": [
-    "oxlint",
-    "ruler",
-    "turborepo"
-  ],
-  "examples": [
-    "ai"
-  ],
+  "frontend": ["tanstack-router", "native-uniwind"],
+  "addons": ["oxlint", "ruler", "turborepo"],
+  "examples": ["ai"],
   "auth": "better-auth",
   "payments": "none",
   "packageManager": "bun",
   "dbSetup": "docker",
   "api": "trpc",
   "webDeploy": "none",
-  "serverDeploy": "none"
+  "serverDeploy": "none",
 }
