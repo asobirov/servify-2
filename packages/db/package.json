@@ -2,12 +2,9 @@
   "name": "@servify/db",
   "type": "module",
   "exports": {
-    ".": {
-      "default": "./src/index.ts"
-    },
-    "./*": {
-      "default": "./src/*.ts"
-    }
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./env": "./env.ts"
   },
   "scripts": {
     "db:push": "drizzle-kit push",
