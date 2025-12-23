@@ -16,7 +16,7 @@ config.resolver = {
 };
 
 const uniwindConfig = withUniwindConfig(config, {
-  cssEntryFile: "./global.css",
+  cssEntryFile: "./src/global.css",
   dtsFile: "./uniwind-types.d.ts",
 });
 
