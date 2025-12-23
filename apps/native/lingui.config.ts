@@ -1,5 +1,4 @@
 import { defineConfig } from "@lingui/conf";
-
 import baseConfig from "@servify/i18n/base";
 
 export default defineConfig({
@@ -7,8 +6,8 @@ export default defineConfig({
   catalogs: [
     {
       path: "locale/locales/{locale}/messages",
-      include: ["app", "components", "contexts", "utils", "lib"],
-      exclude: ["**/node_modules/**", "**/.*"],
+      include: ["src"],
+      exclude: ["**/node_modules/**"],
     },
   ],
 });
