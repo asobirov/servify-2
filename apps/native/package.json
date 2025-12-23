@@ -26,6 +26,7 @@
     "@servify/api": "workspace:*",
     "@servify/i18n": "workspace:*",
     "@stardazed/streams-text-encoding": "^1.0.2",
+    "@t3-oss/env-core": "^0.13.10",
     "@tanstack/react-query": "catalog:",
     "@trpc/client": "catalog:",
     "@trpc/server": "catalog:",
@@ -63,7 +64,7 @@
     "tailwind-variants": "3.1.1",
     "tailwindcss": "~4.1.17",
     "uniwind": "^1.0.4",
-    "zod": "catalog:",
+    "zod": "^4.2.1",
     "zustand": "^5.0.9"
   },
   "devDependencies": {
