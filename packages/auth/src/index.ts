@@ -4,18 +4,19 @@ import * as schema from "@servify/db/schema/auth";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { telegram } from "./plugins/telegram/index";
+import { env } from "@/env";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg",
     schema: schema,
   }),
-  trustedOrigins: [process.env.CORS_ORIGIN || "", "servify://", "exp://"],
+  trustedOrigins: [env.CORS_ORIGIN, "servify://", "exp://"],
   emailAndPassword: {
     enabled: true,
   },
   advanced: {
-    defaultCookieAttributes: process.env.NODE_ENV
+    defaultCookieAttributes: env.NODE_ENV === "production"
       ? {}
       : {
           sameSite: "none",
@@ -25,14 +26,14 @@ export const auth = betterAuth({
   },
   socialProviders: {
     google: {
-      clientId: process.env.GOOGLE_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      clientId: env.AUTH_GOOGLE_CLIENT_ID,
+      clientSecret: env.AUTH_GOOGLE_CLIENT_SECRET,
     },
   },
   plugins: [
     expo(),
     telegram({
-      botToken: process.env.TELEGRAM_BOT_TOKEN || "",
+      botToken: env.AUTH_TELEGRAM_BOT_TOKEN,
       getTempEmail: (id) => `${id}@t.me`,
     }),
   ],
