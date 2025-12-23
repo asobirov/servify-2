@@ -180,7 +180,7 @@
     "packages/db": {
       "name": "@servify/db",
       "dependencies": {
-        "@t3-oss/env-core": "^0.13.10",
+        "@t3-oss/env-core": "catalog:t3-oss",
         "drizzle-orm": "catalog:",
         "pg": "^8.16.3",
         "zod": "catalog:",
