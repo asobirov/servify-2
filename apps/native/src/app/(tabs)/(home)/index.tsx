@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { Trans } from "@lingui/react/macro";
 import { useQuery } from "@tanstack/react-query";
 import { Card, Chip, useThemeColor } from "heroui-native";
 import { Text, View, Pressable } from "react-native";
@@ -8,8 +9,6 @@ import { SignIn } from "@/components/sign-in";
 import { SignUp } from "@/components/sign-up";
 import { authClient } from "@/lib/auth-client";
 import { queryClient, trpc } from "@/utils/trpc";
-
-import { Trans } from "@lingui/react/macro";
 
 export default function Home() {
   const healthCheck = useQuery(trpc.healthCheck.queryOptions());
@@ -24,11 +23,7 @@ export default function Home() {
   const foregroundColor = useThemeColor("foreground");
 
   return (
-    <Container className="p-6">
-      <View className="py-4 mb-6">
-        <Text className="text-4xl font-bold text-foreground mb-2">BETTER T STACK</Text>
-      </View>
-
+    <Container>
       {session?.user ? (
         <Card variant="secondary" className="mb-6 p-4">
           <Text className="text-foreground text-base mb-2">
@@ -47,7 +42,7 @@ export default function Home() {
         </Card>
       ) : null}
 
-      <Card variant="secondary" className="p-6">
+      <Card variant="secondary" className="p-4">
         <View className="flex-row items-center justify-between mb-4">
           <Card.Title>
             <Trans>System Status</Trans>
@@ -86,6 +81,14 @@ export default function Home() {
       <Card variant="secondary" className="mt-6 p-4">
         <Card.Title className="mb-3">Private Data</Card.Title>
         {privateData && <Card.Description>{privateData.data?.message}</Card.Description>}
+      </Card>
+      <Card variant="secondary" className="mt-6 p-4">
+        <Card.Title className="mb-3">Extra Long Text</Card.Title>
+        <Card.Description>
+          {Array.from({ length: 1000 }).map((_, index) => (
+            <Text key={index}>{index}</Text>
+          ))}
+        </Card.Description>
       </Card>
 
       {!session?.user && (

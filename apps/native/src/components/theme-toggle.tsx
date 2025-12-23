@@ -11,16 +11,15 @@ const StyledIonicons = withUniwind(Ionicons);
 export function ThemeToggle() {
   const { toggleTheme, isLight } = useAppTheme();
 
+  const handlePress = () => {
+    if (Platform.OS === "ios") {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+    toggleTheme();
+  };
+
   return (
-    <Pressable
-      onPress={() => {
-        if (Platform.OS === "ios") {
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        }
-        toggleTheme();
-      }}
-      className="px-2.5"
-    >
+    <Pressable onPress={handlePress} className="px-2.5">
       {isLight ? (
         <Animated.View key="moon" entering={ZoomIn} exiting={FadeOut}>
           <StyledIonicons name="moon" size={20} className="text-foreground" />
