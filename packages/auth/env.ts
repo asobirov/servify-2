@@ -1,9 +1,9 @@
-import { dbEnv } from "@servify/db/env";
+import { env as dbEnv } from "@servify/db/env";
 import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod/v4";
 
 export const env = createEnv({
-  extends: [dbEnv()],
+  extends: [dbEnv],
   server: {
     BETTER_AUTH_SECRET: z.string().min(1),
     BETTER_AUTH_URL: z.string().min(1),
