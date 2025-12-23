@@ -40,7 +40,7 @@ export function SignInWithTelegram() {
     const url = new URL("https://oauth.telegram.org/auth");
     url.searchParams.set("bot_id", env.EXPO_PUBLIC_TELEGRAM_BOT_ID.toString());
     url.searchParams.set("origin", env.EXPO_PUBLIC_TELEGRAM_CALLBACK_URL);
-    url.searchParams.set"("embed", "1");
+    url.searchParams.set("embed", "1");
     url.searchParams.set("request_access", "write");
     url.searchParams.set("return_to", env.EXPO_PUBLIC_TELEGRAM_CALLBACK_URL);
 
