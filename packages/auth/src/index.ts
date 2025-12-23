@@ -10,20 +10,7 @@ export const auth = betterAuth({
     provider: "pg",
     schema: schema,
   }),
-  trustedOrigins: [
-    process.env.CORS_ORIGIN || "",
-    "servify://",
-    "exp://", // Development mode - Expo's exp:// scheme with local IP ranges
-    ...(process.env.NODE_ENV === "development"
-      ? [
-          `exp://*/*`,
-          "exp://10.0.0.*:*/*", // Trust 10.0.0.x IP range
-          "exp://192.168.*.*:*/*", // Trust 192.168.x.x IP range
-          "exp://172.*.*.*:*/*", // Trust 172.x.x.x IP range
-          "exp://localhost:*/*", // Trust localhost
-        ]
-      : []),
-  ],
+  trustedOrigins: [process.env.CORS_ORIGIN || "", "servify://", "exp://"],
   emailAndPassword: {
     enabled: true,
   },
