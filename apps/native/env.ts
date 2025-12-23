@@ -11,7 +11,5 @@ export const env = createEnv({
   clientPrefix: "EXPO_PUBLIC",
   client: {},
 
-  runtimeEnv: {
-    NODE_ENV: process.env.NODE_ENV,
-  },
+  runtimeEnv: process.env,
 });
