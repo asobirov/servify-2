@@ -9,6 +9,9 @@ export const env = createEnv({
   clientPrefix: "EXPO_PUBLIC",
   client: {
     EXPO_PUBLIC_SERVER_URL: z.string().min(1),
+
+    EXPO_PUBLIC_TELEGRAM_BOT_ID: z.number(),
+    EXPO_PUBLIC_TELEGRAM_CALLBACK_URL: z.string().min(1),
   },
 
   runtimeEnv: process.env,

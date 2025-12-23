@@ -1,30 +1,21 @@
-import { Card, Button } from "heroui-native";
 import { Ionicons } from "@expo/vector-icons";
-import { withUniwind } from "uniwind";
 import * as WebBrowser from "expo-web-browser";
+import { Card, Button } from "heroui-native";
+import { withUniwind } from "uniwind";
+
+import { env } from "@/env";
 
 const StyledIonicons = withUniwind(Ionicons);
 
-import { authClient } from "@/lib/auth-client";
 import { useCallback } from "react";
 
-function SignIn() {
-  const telegramSignIn = useCallback(async () => {
-    const result = await WebBrowser.openAuthSessionAsync(
-      "https://oauth.telegram.org/auth?bot_id=8361741979&origin=https://ready-geckos-write.loca.lt/telegram&embed=1&request_access=write&return_to=https://ready-geckos-write.loca.lt/telegram",
-      "servify://",
-    );
+import { authClient } from "@/lib/auth-client";
 
-    if (result.type !== "success") {
-      return;
-    }
-
-    const resultURL = new URL(result.url);
-
-    const user = JSON.parse(atob(resultURL.searchParams.get("tgAuthResult") || "") || "{}");
-
-    await authClient.signIn.telegram(user as any);
-  }, []);
+export function SignIn() {
+  const mutedColor = useThemeColor("muted");
+  const accentColor = useThemeColor("accent");
+  const foregroundColor = useThemeColor("foreground");
+  const dangerColor = useThemeColor("danger");
 
   return (
     <>
@@ -44,20 +35,42 @@ function SignIn() {
             Sign In with Google
           </Button.Label>
         </Button>
-
-        <Button
-          variant="secondary"
-          className="flex flex-row justify-between"
-          onPress={telegramSignIn}
-        >
-          <StyledIonicons name="paper-plane" size={16} className="-mr-4 text-foreground" />
-          <Button.Label className="self-center mx-auto text-foreground">
-            Sign In with Telegram
-          </Button.Label>
-        </Button>
       </Card>
     </>
   );
 }
 
-export { SignIn };
+export function SignInWithTelegram() {
+  const getTelegramCallbackURL = () => {
+    const url = new URL("https://oauth.telegram.org/auth");
+    url.searchParams.set("bot_id", env.EXPO_PUBLIC_TELEGRAM_BOT_ID.toString());
+    url.searchParams.set("origin", env.EXPO_PUBLIC_TELEGRAM_CALLBACK_URL);
+    url.searchParams.set("embed", "1");
+    url.searchParams.set("request_access", "write");
+    url.searchParams.set("return_to", env.EXPO_PUBLIC_TELEGRAM_CALLBACK_URL);
+
+    return url.toString();
+  };
+
+  const handlePress = async () => {
+    const result = await WebBrowser.openAuthSessionAsync(getTelegramCallbackURL(), "servify://");
+
+    if (result.type !== "success") {
+      return;
+    }
+
+    const resultURL = new URL(result.url);
+
+    const user = JSON.parse(atob(resultURL.searchParams.get("tgAuthResult") || "") || "{}");
+
+    await authClient.signIn.telegram(user as any);
+  };
+  return (
+    <Button variant="secondary" className="flex flex-row justify-between" onPress={handlePress}>
+      <StyledIonicons name="paper-plane" size={16} className="-mr-4 text-foreground" />
+      <Button.Label className="self-center mx-auto text-foreground">
+        Sign In with Telegram
+      </Button.Label>
+    </Button>
+  );
+}
