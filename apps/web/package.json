@@ -4,11 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "serve": "vite preview",
-    "start": "vite",
-    "check-types": "tsc --noEmit"
+    "dev": "bun with-env bun vite dev",
+    "build": "bun with-env bun vite build",
+    "serve": "bun with-env bun vite preview",
+    "start": "bun with-env bun vite",
+    "check-types": "bun with-env bun tsc --noEmit",
+    "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
     "@ai-sdk/react": "catalog:",
@@ -53,6 +54,7 @@
     "tailwindcss": "^4.0.15",
     "typescript": "catalog:",
     "vite": "^7.3.0",
-    "vite-tsconfig-paths": "^6.0.3"
+    "vite-tsconfig-paths": "^6.0.3",
+    "@t3-oss/env-core": "catalog:t3-oss"
   }
 }
