@@ -4,7 +4,9 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./env": "./env.ts"
+    "./env": "./env.ts",
+    "./plugins/telegram": "./src/plugins/telegram/index.ts",
+    "./plugins/telegram/client": "./src/plugins/telegram/client.ts"
   },
   "scripts": {
     "clean": "git clean -xdf .cache .turbo dist node_modules"
@@ -18,7 +20,6 @@
     "@servify/db": "workspace:*",
     "@t3-oss/env-core": "catalog:t3-oss",
     "better-auth": "catalog:",
-    "telegram-better-auth": "^0.0.8",
     "zod": "catalog:"
   }
 }

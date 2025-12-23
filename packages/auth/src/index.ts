@@ -3,7 +3,7 @@ import { db } from "@servify/db";
 import * as schema from "@servify/db/schema/auth";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { telegram } from "telegram-better-auth";
+import { telegram } from "./plugins/telegram/index";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
