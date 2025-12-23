@@ -7,11 +7,15 @@ import { env } from "@/env";
 
 const StyledIonicons = withUniwind(Ionicons);
 
-import { useCallback } from "react";
+import { useEffect } from "react";
 
 import { authClient } from "@/lib/auth-client";
 
 export function SignIn() {
+  useEffect(() => {
+    WebBrowser.maybeCompleteAuthSession();
+  }, []);
+
   return (
     <>
       <Card className="gap-2">
@@ -30,6 +34,8 @@ export function SignIn() {
             Sign In with Google
           </Button.Label>
         </Button>
+
+        <SignInWithTelegram />
       </Card>
     </>
   );

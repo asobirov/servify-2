@@ -3,11 +3,13 @@ import { db } from "@servify/db";
 import * as schema from "@servify/db/schema/auth";
 import { betterAuth, type BetterAuthOptions } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { telegram } from "./plugins/telegram/index";
+
 import { env } from "@/env";
 
+import { telegram } from "./plugins/telegram/index";
+
 const getDefaultCookieAttributes = () => {
-  if (env.NODE_ENV === "production") {
+  if (env.NODE_ENV === "development") {
     return {} satisfies NonNullable<BetterAuthOptions["advanced"]>["defaultCookieAttributes"];
   }
 

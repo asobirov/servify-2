@@ -5,13 +5,14 @@
   "main": "expo-router/entry",
   "scripts": {
     "clean": "git clean -xdf .cache .expo .turbo android ios node_modules",
-    "start": "expo start",
-    "dev": "expo start --clear --ios",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
-    "prebuild": "expo prebuild",
-    "web": "expo start --web",
-    "lingui:extract": "lingui extract --clean"
+    "start": "bun with-env expo start",
+    "dev": "bun with-env expo start --clear --ios",
+    "android": "bun with-env expo run:android",
+    "ios": "bun with-env expo run:ios",
+    "prebuild": "bun with-env expo prebuild",
+    "web": "bun with-env expo start --web",
+    "lingui:extract": "lingui extract --clean",
+    "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
     "@ai-sdk/react": "catalog:",
