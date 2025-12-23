@@ -1,8 +1,10 @@
+import { dbEnv } from "@servify/db/env";
 import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod/v4";
 
 export function authEnv() {
   return createEnv({
+    extends: [dbEnv()],
     server: {
       AUTH_GOOGLE_CLIENT_ID: z.string().min(1),
       AUTH_GOOGLE_CLIENT_SECRET: z.string().min(1),
