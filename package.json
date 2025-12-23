@@ -25,6 +25,13 @@
       "@types/pg": "^8.15.6"
     },
     "catalogs": {
+      "lingui": {
+        "@lingui/conf": "^5.7.0",
+        "@lingui/babel-plugin-lingui-macro": "^5.7.0",
+        "@lingui/core": "^5.7.0",
+        "@lingui/react": "^5.7.0",
+        "@lingui/metro-transformer": "^5.7.0"
+      },
       "t3-oss": {
         "@t3-oss/env-core": "^0.13.10"
       }

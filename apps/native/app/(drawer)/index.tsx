@@ -9,6 +9,8 @@ import { SignUp } from "@/components/sign-up";
 import { authClient } from "@/lib/auth-client";
 import { queryClient, trpc } from "@/utils/trpc";
 
+import { Trans } from "@lingui/react/macro";
+
 export default function Home() {
   const healthCheck = useQuery(trpc.healthCheck.queryOptions());
   const privateData = useQuery(trpc.privateData.queryOptions());
@@ -47,7 +49,9 @@ export default function Home() {
 
       <Card variant="secondary" className="p-6">
         <View className="flex-row items-center justify-between mb-4">
-          <Card.Title>System Status</Card.Title>
+          <Card.Title>
+            <Trans>System Status</Trans>
+          </Card.Title>
           <Chip variant="secondary" color={isConnected ? "success" : "danger"} size="sm">
             <Chip.Label>{isConnected ? "LIVE" : "OFFLINE"}</Chip.Label>
           </Chip>
