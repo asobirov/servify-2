@@ -7,9 +7,9 @@
     "./env": "./env.ts"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -b",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "dev": "tsc",
+    "dev": "tsc -b",
     "push": "bun with-env bun drizzle-kit push",
     "generate": "bun with-env bun drizzle-kit generate",
     "studio": "bun with-env bun drizzle-kit studio",

@@ -3,36 +3,43 @@ import type { ServiceCategoryTranslations } from "@servify/db/schema/service-cat
 import { db } from "@servify/db";
 import { z } from "zod/v4";
 
-import { publicProcedure } from "@/trpc";
+import { publicProcedure, router } from "@/trpc";
 
-export const getCategories = publicProcedure
-  .input(
-    z.object({
-      page: z.number().optional().default(1),
-      limit: z.number().optional().default(30),
-    }),
-  )
-  .output(
-    z.array(
+export const categoryRouter = router({
+  getCategories: publicProcedure
+    .input(
       z.object({
-        name: z.string(),
-        slug: z.string(),
-        isActive: z.boolean(),
+        page: z.number().optional().default(1),
+        limit: z.number().optional().default(30),
       }),
-    ),
-  )
-  .query(async ({ input, ctx: { locale } }) => {
-    const categories = await db.query.ServiceCategory.findMany({
-      limit: input.limit,
-      offset: (input.page - 1) * input.limit,
-      orderBy: (c, { desc }) => [desc(c.isActive)],
-    });
+    )
+    .output(
+      z.array(
+        z.object({
+          name: z.string(),
+          slug: z.string(),
+          isActive: z.boolean(),
+        }),
+      ),
+    )
+    .query(async ({ input, ctx: { locale } }) => {
+      try {
+        const categories = await db.query.ServiceCategory.findMany({
+          limit: input.limit,
+          offset: (input.page - 1) * input.limit,
+          orderBy: (c, { desc }) => [desc(c.isActive)],
+        });
 
-    const localizedCategories = categories.map((category) => ({
-      name: category.nameTranslations[locale as keyof ServiceCategoryTranslations],
-      slug: category.slug,
-      isActive: category.isActive,
-    }));
+        const localizedCategories = categories.map((category) => ({
+          name: category.nameTranslations[locale as keyof ServiceCategoryTranslations],
+          slug: category.slug,
+          isActive: category.isActive,
+        }));
 
-    return localizedCategories;
-  });
+        return localizedCategories;
+      } catch (error) {
+        console.error(error);
+        return [];
+      }
+    }),
+});

@@ -1,4 +1,4 @@
-import type { AppRouter } from "@servify/api/routers/index";
+import type { AppRouter } from "@servify/api";
 
 import { defaultShouldDehydrateQuery, QueryClient } from "@tanstack/react-query";
 import { createTRPCClient, httpBatchLink } from "@trpc/client";
@@ -28,6 +28,7 @@ export const queryClient = new QueryClient({
 const trpcClient = createTRPCClient<AppRouter>({
   links: [
     httpBatchLink({
+      transformer: superjson,
       url: `${env.EXPO_PUBLIC_SERVER_URL}/trpc`,
       headers() {
         const headers = new Map<string, string>();

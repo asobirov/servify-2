@@ -2,14 +2,16 @@
   "name": "@servify/api",
   "type": "module",
   "exports": {
-    ".": "./src/trpc.ts",
-    "./*": "./src/*.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.ts"
+    }
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -b",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "dev": "tsc",
-  "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+    "dev": "tsc -b",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
     "@ai-sdk/google": "catalog:",

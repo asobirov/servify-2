@@ -23,6 +23,7 @@ export default function Home() {
 
   return (
     <Container>
+      <ServiceCategoriesHList />
       {session?.user ? (
         <Card variant="secondary" className="mb-6 p-4">
           <Text className="text-foreground text-base mb-2">
@@ -101,5 +102,13 @@ export default function Home() {
 }
 
 const ServiceCategoriesHList = () => {
-  const {} = useQueries(trpc.s)
-}
+  const { data: categories } = useQuery(trpc.service.category.getCategories.queryOptions());
+
+  return (
+    <View>
+      {categories?.map((category) => (
+        <Text key={category.id}>{category.name}</Text>
+      ))}
+    </View>
+  );
+};
