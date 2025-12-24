@@ -2,6 +2,8 @@ import "@/polyfills";
 import "@/global.css";
 import { Stack } from "expo-router";
 import { useThemeColor } from "heroui-native";
+import { Animated, View } from "react-native";
+import { withUniwind } from "uniwind";
 
 import { Providers } from "@/components/providers";
 
@@ -27,6 +29,8 @@ function StackLayout() {
     </Stack>
   );
 }
+
+const AnimatedView = withUniwind(Animated.View);
 
 export default function Layout() {
   return (
