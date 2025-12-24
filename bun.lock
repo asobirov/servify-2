@@ -30,6 +30,7 @@
         "@react-navigation/drawer": "^7.3.9",
         "@react-navigation/elements": "^2.8.1",
         "@servify/api": "workspace:*",
+        "@servify/auth": "workspace:*",
         "@servify/i18n": "workspace:*",
         "@stardazed/streams-text-encoding": "^1.0.2",
         "@t3-oss/env-core": "^0.13.10",
