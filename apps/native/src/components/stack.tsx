@@ -20,7 +20,7 @@ const DEFAULT_STACK_HEADER = ({
     ? {}
     : {
         contentStyle: {
-          backgroundColor: backgroundColor,
+          backgroundColor: "backgroundColor",
         },
         headerTransparent: true,
         headerBlurEffect: isLiquidGlassAvailable ? undefined : "systemChromeMaterial",
@@ -31,9 +31,9 @@ const DEFAULT_STACK_HEADER = ({
         },
         headerLargeTitle: true,
         headerTintColor: headerTextColor,
-        // headerTitleStyle: {
-        // //   color: "",
-        // },
+        headerTitleStyle: {
+          color: headerTextColor,
+        },
         headerLargeTitleStyle: { color: headerTextColor },
       };
 
@@ -101,8 +101,8 @@ export function Stack({
       screenOptions={{
         ...DEFAULT_STACK_HEADER({
           isLiquidGlassAvailable: isLiquidGlassAvailable(),
-          headerTextColor: `hsl(${headerTextColor})`,
-          backgroundColor: `hsl(${backgroundColor})`,
+          headerTextColor: `${headerTextColor}`,
+          backgroundColor: `${backgroundColor}`,
         }),
         ...screenOptions,
       }}
