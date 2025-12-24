@@ -1,11 +1,11 @@
 import { Text, View } from "react-native";
 
-import { Container } from "@/components/container";
+import { ContainerScrollView } from "@/components/container";
 
 export default function Search() {
   return (
-    <Container>
+    <ContainerScrollView>
       <Text className="text-foreground">Search</Text>
-    </Container>
+    </ContainerScrollView>
   );
 }

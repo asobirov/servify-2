@@ -1,11 +1,11 @@
 import { Text } from "react-native";
 
-import { Container } from "@/components/container";
+import { ContainerScrollView } from "@/components/container";
 
 export default function Auth() {
   return (
-    <Container>
+    <ContainerScrollView>
       <Text className="text-foreground">Auth</Text>
-    </Container>
+    </ContainerScrollView>
   );
 }

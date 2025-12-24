@@ -4,7 +4,7 @@ import { Divider, RadioGroup, Surface } from "heroui-native";
 import { Fragment } from "react";
 import { View } from "react-native";
 
-import { Container } from "@/components/container";
+import { ContainerScrollView } from "@/components/container";
 import { useAppLanguage } from "@/store/use-app-language-store";
 import { cn } from "@/utils/cn";
 
@@ -18,7 +18,7 @@ export default function LanguageScreen() {
   const getLanguageValue = () => {};
 
   return (
-    <Container>
+    <ContainerScrollView>
       <Surface>
         <RadioGroup value={language} onValueChange={handleLanguageChange}>
           {LOCALES.map((locale, i) => (
@@ -37,7 +37,7 @@ export default function LanguageScreen() {
           ))}
         </RadioGroup>
       </Surface>
-    </Container>
+    </ContainerScrollView>
   );
 }
 

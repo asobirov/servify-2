@@ -1,11 +1,11 @@
 import { Text } from "react-native";
 
-import { Container } from "@/components/container";
+import { ContainerScrollView } from "@/components/container";
 
 export default function LanguageScreen() {
   return (
-    <Container>
+    <ContainerScrollView>
       <Text>Language</Text>
-    </Container>
+    </ContainerScrollView>
   );
 }

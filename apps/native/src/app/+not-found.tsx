@@ -2,13 +2,13 @@ import { Link, Stack } from "expo-router";
 import { Card } from "heroui-native";
 import { Text, View, Pressable } from "react-native";
 
-import { Container } from "@/components/container";
+import { ContainerScrollView } from "@/components/container";
 
 export default function NotFoundScreen() {
   return (
     <>
       <Stack.Screen options={{ title: "Oops!" }} />
-      <Container>
+      <ContainerScrollView>
         <View className="flex-1 justify-center items-center p-6">
           <Card variant="secondary" className="items-center p-8 max-w-md">
             <Text className="text-6xl mb-4">🤔</Text>
@@ -23,7 +23,7 @@ export default function NotFoundScreen() {
             </Link>
           </Card>
         </View>
-      </Container>
+      </ContainerScrollView>
     </>
   );
 }

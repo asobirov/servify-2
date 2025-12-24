@@ -3,7 +3,7 @@ import { router } from "expo-router";
 import { Card, useThemeColor } from "heroui-native";
 import { Text, View, Pressable } from "react-native";
 
-import { Container } from "@/components/container";
+import { ContainerScrollView } from "@/components/container";
 
 function Modal() {
   const accentForegroundColor = useThemeColor("accent-foreground");
@@ -13,7 +13,7 @@ function Modal() {
   }
 
   return (
-    <Container>
+    <ContainerScrollView>
       <View className="flex-1 justify-center items-center p-6">
         <Card variant="secondary" className="p-6 w-full max-w-sm">
           <Card.Body className="gap-4 items-center">
@@ -41,7 +41,7 @@ function Modal() {
           </Card.Footer>
         </Card>
       </View>
-    </Container>
+    </ContainerScrollView>
   );
 }
 

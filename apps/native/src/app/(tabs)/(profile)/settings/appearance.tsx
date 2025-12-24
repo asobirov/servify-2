@@ -1,7 +1,7 @@
 import { Trans } from "@lingui/react/macro";
 import { RadioGroup } from "heroui-native";
 
-import { Container } from "@/components/container";
+import { ContainerScrollView } from "@/components/container";
 import { SUPPORTED_THEMES, useAppTheme } from "@/contexts/app-theme-context";
 
 export default function LanguageScreen() {
@@ -25,7 +25,7 @@ export default function LanguageScreen() {
   };
 
   return (
-    <Container>
+    <ContainerScrollView>
       <RadioGroup value={getThemeValue()} onValueChange={handleThemeChange}>
         {SUPPORTED_THEMES.map((theme) => (
           <RadioGroup.Item key={theme} value={theme}>
@@ -33,7 +33,7 @@ export default function LanguageScreen() {
           </RadioGroup.Item>
         ))}
       </RadioGroup>
-    </Container>
+    </ContainerScrollView>
   );
 }
 

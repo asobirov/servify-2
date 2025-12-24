@@ -5,7 +5,7 @@ import { Accordion } from "heroui-native";
 import { Text } from "react-native";
 import { withUniwind } from "uniwind";
 
-import { Container } from "@/components/container";
+import { ContainerScrollView } from "@/components/container";
 
 import { ThemeLabel } from "./appearance";
 import { LanguageLabel } from "./language";
@@ -43,7 +43,7 @@ export default function SettingsScreen() {
     router.push(`/(tabs)/(profile)/settings/${path}`);
   };
   return (
-    <Container>
+    <ContainerScrollView>
       <Accordion isCollapsible={false} variant="surface">
         {settingsPages.map((page) => (
           <Accordion.Item key={page.title} value={page.title}>
@@ -57,6 +57,6 @@ export default function SettingsScreen() {
           </Accordion.Item>
         ))}
       </Accordion>
-    </Container>
+    </ContainerScrollView>
   );
 }
