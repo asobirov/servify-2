@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Trans } from "@lingui/react/macro";
-import { useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 import { Card, Chip, useThemeColor } from "heroui-native";
 import { Text, View, Pressable } from "react-native";
 
@@ -20,7 +20,6 @@ export default function Home() {
   const mutedColor = useThemeColor("muted");
   const successColor = useThemeColor("success");
   const dangerColor = useThemeColor("danger");
-  const foregroundColor = useThemeColor("foreground");
 
   return (
     <Container>
@@ -99,4 +98,8 @@ export default function Home() {
       )}
     </Container>
   );
+}
+
+const ServiceCategoriesHList = () => {
+  const {} = useQueries(trpc.s)
 }

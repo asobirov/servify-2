@@ -5,7 +5,12 @@
     ".": "./src/trpc.ts",
     "./*": "./src/*.ts"
   },
-  "scripts": {},
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc",
+  "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
   "dependencies": {
     "@ai-sdk/google": "catalog:",
     "@servify/auth": "workspace:*",
@@ -22,7 +27,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@servify/config": "workspace:*",
+    "@servify/tsconfig": "workspace:*",
     "@types/negotiator": "^0.6.4",
     "typescript": "catalog:"
   }

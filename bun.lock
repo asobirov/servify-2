@@ -88,7 +88,7 @@
         "@lingui/cli": "^5.7.0",
         "@lingui/conf": "catalog:lingui",
         "@lingui/metro-transformer": "catalog:lingui",
-        "@servify/config": "workspace:*",
+        "@servify/tsconfig": "workspace:*",
         "@types/node": "^24.10.0",
         "@types/react": "~19.1.0",
         "babel-preset-expo": "^54.0.9",
@@ -115,7 +115,7 @@
         "zod": "catalog:",
       },
       "devDependencies": {
-        "@servify/config": "workspace:*",
+        "@servify/tsconfig": "workspace:*",
         "@types/bun": "catalog:",
         "tsdown": "^0.16.5",
         "typescript": "catalog:",
@@ -155,7 +155,7 @@
       },
       "devDependencies": {
         "@lingui/conf": "catalog:lingui",
-        "@servify/config": "workspace:*",
+        "@servify/tsconfig": "workspace:*",
         "@t3-oss/env-core": "catalog:t3-oss",
         "@tanstack/react-query-devtools": "^5.91.1",
         "@tanstack/react-router-devtools": "^1.141.1",
@@ -189,7 +189,7 @@
         "zod": "catalog:",
       },
       "devDependencies": {
-        "@servify/config": "workspace:*",
+        "@servify/tsconfig": "workspace:*",
         "@types/negotiator": "^0.6.4",
         "typescript": "catalog:",
       },
@@ -204,13 +204,9 @@
         "zod": "catalog:",
       },
       "devDependencies": {
-        "@servify/config": "workspace:*",
+        "@servify/tsconfig": "workspace:*",
         "typescript": "catalog:",
       },
-    },
-    "packages/config": {
-      "name": "@servify/config",
-      "version": "0.0.0",
     },
     "packages/db": {
       "name": "@servify/db",
@@ -221,7 +217,7 @@
         "zod": "catalog:",
       },
       "devDependencies": {
-        "@servify/config": "workspace:*",
+        "@servify/tsconfig": "workspace:*",
         "@types/pg": "catalog:",
         "dotenv-cli": "catalog:",
         "drizzle-kit": "^0.31.8",
@@ -232,9 +228,12 @@
       "name": "@servify/i18n",
       "devDependencies": {
         "@lingui/conf": "catalog:lingui",
-        "@servify/config": "workspace:*",
+        "@servify/tsconfig": "workspace:*",
         "typescript": "catalog:",
       },
+    },
+    "tooling/typescript": {
+      "name": "@servify/tsconfig",
     },
   },
   "catalog": {
@@ -960,8 +959,6 @@
 
     "@servify/auth": ["@servify/auth@workspace:packages/auth"],
 
-    "@servify/config": ["@servify/config@workspace:packages/config"],
-
     "@servify/db": ["@servify/db@workspace:packages/db"],
 
     "@servify/i18n": ["@servify/i18n@workspace:packages/i18n"],
@@ -969,6 +966,8 @@
     "@servify/native": ["@servify/native@workspace:apps/native"],
 
     "@servify/server": ["@servify/server@workspace:apps/server"],
+
+    "@servify/tsconfig": ["@servify/tsconfig@workspace:tooling/typescript"],
 
     "@servify/web": ["@servify/web@workspace:apps/web"],
 

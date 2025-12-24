@@ -6,15 +6,14 @@
     "./languages": "./src/languages.ts"
   },
   "scripts": {
+    "build": "tsc",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "dev": "tsc",
-    "format": "prettier --check . --ignore-path ../../.gitignore",
-    "lint": "eslint",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "devDependencies": {
     "@lingui/conf": "catalog:lingui",
-    "@servify/config": "workspace:*",
+    "@servify/tsconfig": "workspace:*",
     "typescript": "catalog:"
   }
 }

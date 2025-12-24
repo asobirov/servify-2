@@ -1,0 +1,7 @@
+{
+  "name": "@servify/tsconfig",
+  "private": true,
+  "files": [
+    "*.json"
+  ]
+}

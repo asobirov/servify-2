@@ -35,7 +35,7 @@ const trpcClient = createTRPCClient<AppRouter>({
         if (cookies) {
           headers.set("Cookie", cookies);
         }
-        // Get locale from Zustand store
+
         const locale = useAppLanguage.getState().language;
         if (locale) {
           headers.set("accept-language", locale);

@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@lingui/conf": "catalog:lingui",
-    "@servify/config": "workspace:*",
+    "@servify/tsconfig": "workspace:*",
     "@tanstack/react-query-devtools": "^5.91.1",
     "@tanstack/react-router-devtools": "^1.141.1",
     "@tanstack/router-plugin": "^1.141.1",
