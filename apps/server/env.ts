@@ -1,7 +1,7 @@
-import { createEnv } from "@t3-oss/env-core";
-import { z } from "zod/v4";
 import { env as authEnv } from "@servify/auth/env";
 import { env as dbEnv } from "@servify/db/env";
+import { createEnv } from "@t3-oss/env-core";
+import { z } from "zod/v4";
 
 export const env = createEnv({
   extends: [authEnv, dbEnv],

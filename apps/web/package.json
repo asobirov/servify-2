@@ -45,6 +45,7 @@
   "devDependencies": {
     "@lingui/conf": "catalog:lingui",
     "@servify/tsconfig": "workspace:*",
+    "@t3-oss/env-core": "catalog:t3-oss",
     "@tanstack/react-query-devtools": "^5.91.1",
     "@tanstack/react-router-devtools": "^1.141.1",
     "@tanstack/router-plugin": "^1.141.1",
@@ -56,7 +57,6 @@
     "tailwindcss": "^4.0.15",
     "typescript": "catalog:",
     "vite": "^7.3.0",
-    "vite-tsconfig-paths": "^6.0.3",
-    "@t3-oss/env-core": "catalog:t3-oss"
+    "vite-tsconfig-paths": "^6.0.3"
   }
 }

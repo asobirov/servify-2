@@ -1,9 +1,11 @@
 import type { Account, BetterAuthPlugin, InferOptionSchema, User } from "better-auth";
+
 import { createAuthEndpoint, getSessionFromCtx } from "better-auth/api";
 import { setSessionCookie } from "better-auth/cookies";
-import { z } from "zod";
-import { schema } from "./schema";
 import { mergeSchema } from "better-auth/db";
+import { z } from "zod";
+
+import { schema } from "./schema";
 
 const verifyTelegramData = async (botToken: string, data: Record<string, any>) => {
   const encoder = new TextEncoder();

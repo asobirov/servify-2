@@ -1,9 +1,9 @@
+import type { SupportedLocales } from "@servify/i18n/languages";
+
+import { LOCALES } from "@servify/i18n/languages";
 import { getLocales } from "expo-localization";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-
-import type { SupportedLocales } from "@servify/i18n/languages";
-import { LOCALES } from "@servify/i18n/languages";
 
 import { zustandMMKVStorage } from "@/store/mmkv";
 

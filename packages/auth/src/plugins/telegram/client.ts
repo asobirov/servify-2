@@ -1,4 +1,5 @@
 import type { BetterAuthClientPlugin } from "better-auth";
+
 import type { telegram } from "./index";
 
 export const telegramClient = () => {

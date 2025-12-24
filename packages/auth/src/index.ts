@@ -5,7 +5,6 @@ import { betterAuth, type BetterAuthOptions } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
 import { env } from "../env";
-
 import { telegram } from "./plugins/telegram/index";
 
 const getDefaultCookieAttributes = () => {

@@ -10,10 +10,7 @@ export type ServiceCategoryTranslations = {
 export const ServiceCategory = pgTable("service_category", (t) => ({
   id: t.uuid().notNull().primaryKey().defaultRandom(),
 
-  nameTranslations: t
-    .jsonb("name_translations")
-    .$type<ServiceCategoryTranslations>()
-    .notNull(),
+  nameTranslations: t.jsonb("name_translations").$type<ServiceCategoryTranslations>().notNull(),
   slug: t.text().notNull().unique(),
 
   isActive: t.boolean().notNull().default(true),

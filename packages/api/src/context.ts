@@ -10,7 +10,7 @@ export function getRequestLocale(
 ): string {
   // First, check for explicit x-locale header (set by client)
   const explicitLocale = requestHeaders.get("x-locale");
-  if (explicitLocale && LOCALES.includes(explicitLocale as typeof LOCALES[number])) {
+  if (explicitLocale && LOCALES.includes(explicitLocale as (typeof LOCALES)[number])) {
     return explicitLocale;
   }
 

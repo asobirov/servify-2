@@ -1,10 +1,11 @@
 import type { Messages } from "@lingui/core";
-import { useEffect } from "react";
-import { i18n } from "@lingui/core";
-
 import type { SupportedLocales } from "@servify/i18n/languages";
 
+import { i18n } from "@lingui/core";
+import { useEffect } from "react";
+
 import { useAppLanguage } from "@/store/use-app-language-store";
+
 import { messages as messagesEn } from "./locales/en/messages.po";
 import { messages as messagesRu } from "./locales/ru/messages.po";
 import { messages as messagesUz } from "./locales/uz/messages.po";
