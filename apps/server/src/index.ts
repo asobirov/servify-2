@@ -1,13 +1,13 @@
 import { google } from "@ai-sdk/google";
 import { trpcServer } from "@hono/trpc-server";
-import { createContext } from "@servify/api/context";
-import { appRouter } from "@servify/api/routers/index";
+import { createContext, appRouter } from "@servify/api";
 import { auth } from "@servify/auth";
 import { streamText, convertToModelMessages } from "ai";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import path from "path";
+
 import { env } from "@/env";
 
 const app = new Hono();

@@ -1,8 +1,8 @@
-import type { AppRouter } from "@servify/api/routers/index";
+import type { AppRouter } from "@servify/api";
 import type { QueryClient } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { TRPCOptionsProxy } from "@trpc/tanstack-react-query";
 
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { HeadContent, Outlet, Scripts, createRootRouteWithContext } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 

@@ -1,4 +1,4 @@
-import type { AppRouter } from "@servify/api/routers/index";
+import type { AppRouter } from "@servify/api";
 
 import { QueryCache, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 

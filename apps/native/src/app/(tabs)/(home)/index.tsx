@@ -107,7 +107,7 @@ const ServiceCategoriesHList = () => {
   return (
     <View>
       {categories?.map((category) => (
-        <Text key={category.id}>{category.name}</Text>
+        <Text key={category.slug}>{category.name}</Text>
       ))}
     </View>
   );
