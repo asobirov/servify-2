@@ -1,35 +1,38 @@
-import { Trans, useLingui } from "@lingui/react/macro";
-import { Stack } from "expo-router";
-import { useThemeColor } from "heroui-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useLingui } from "@lingui/react/macro";
+import { Link } from "expo-router";
+import { Pressable } from "react-native";
+import { View } from "react-native";
+import { withUniwind } from "uniwind";
 
+import { Stack } from "@/components/stack";
 import { ThemeToggle } from "@/components/theme-toggle";
 
-export default function HomeLayout() {
-  const themeColorForeground = useThemeColor("foreground");
+const StyledIonicons = withUniwind(Ionicons);
 
+export default function HomeLayout() {
   const { t } = useLingui();
 
   return (
-    <Stack
-      screenOptions={{
-        headerTransparent: true,
-        headerShadowVisible: true,
-        headerLargeTitleShadowVisible: false,
-        headerLargeStyle: {
-          backgroundColor: "transparent",
-        },
-        headerLargeTitleStyle: { color: themeColorForeground },
-
-        headerTintColor: themeColorForeground,
-        headerTitleStyle: { color: themeColorForeground },
-      }}
-    >
+    <Stack>
       <Stack.Screen
         name="index"
         options={{
           headerTitle: t`Home`,
-          //   headerLargeTitle: true,
           headerRight: () => <ThemeToggle />,
+          headerLeft: () => (
+            <Link href="/modal" asChild>
+              <Pressable className="flex items-center justify-center">
+                <View key="modal" className={"items-center justify-center"}>
+                  <StyledIonicons
+                    name="information-circle-outline"
+                    size={20}
+                    className="text-foreground"
+                  />
+                </View>
+              </Pressable>
+            </Link>
+          ),
         }}
       />
     </Stack>

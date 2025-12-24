@@ -1,20 +1,23 @@
 import React, { createContext, useCallback, useContext, useMemo } from "react";
 import { Uniwind, useUniwind } from "uniwind";
 
-type ThemeName = "light" | "dark";
+export const SUPPORTED_THEMES = ["light", "dark", "system"] as const;
+export type ThemeName = (typeof SUPPORTED_THEMES)[number];
 
 type AppThemeContextType = {
-  currentTheme: string;
+  currentTheme: ThemeName;
   isLight: boolean;
   isDark: boolean;
+  hasAdaptiveThemes: boolean;
   setTheme: (theme: ThemeName) => void;
   toggleTheme: () => void;
+  isSupportedTheme: (theme: string) => theme is ThemeName;
 };
 
 const AppThemeContext = createContext<AppThemeContextType | undefined>(undefined);
 
 export const AppThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const { theme } = useUniwind();
+  const { theme, hasAdaptiveThemes } = useUniwind();
 
   const isLight = useMemo(() => {
     return theme === "light";
@@ -32,6 +35,10 @@ export const AppThemeProvider = ({ children }: { children: React.ReactNode }) =>
     Uniwind.setTheme(theme === "light" ? "dark" : "light");
   }, [theme]);
 
+  const isSupportedTheme = (theme: string): theme is ThemeName => {
+    return SUPPORTED_THEMES.includes(theme as (typeof SUPPORTED_THEMES)[number]);
+  };
+
   const value = useMemo(
     () => ({
       currentTheme: theme,
@@ -39,8 +46,10 @@ export const AppThemeProvider = ({ children }: { children: React.ReactNode }) =>
       isDark,
       setTheme,
       toggleTheme,
+      isSupportedTheme,
+      hasAdaptiveThemes,
     }),
-    [theme, isLight, isDark, setTheme, toggleTheme],
+    [theme, isLight, isDark, setTheme, toggleTheme, isSupportedTheme, hasAdaptiveThemes],
   );
 
   return <AppThemeContext.Provider value={value}>{children}</AppThemeContext.Provider>;

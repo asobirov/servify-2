@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Trans } from "@lingui/react/macro";
-import { useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 import { Card, Chip, useThemeColor } from "heroui-native";
 import { Text, View, Pressable } from "react-native";
 
@@ -20,10 +20,10 @@ export default function Home() {
   const mutedColor = useThemeColor("muted");
   const successColor = useThemeColor("success");
   const dangerColor = useThemeColor("danger");
-  const foregroundColor = useThemeColor("foreground");
 
   return (
     <Container>
+      <ServiceCategoriesHList />
       {session?.user ? (
         <Card variant="secondary" className="mb-6 p-4">
           <Text className="text-foreground text-base mb-2">
@@ -100,3 +100,15 @@ export default function Home() {
     </Container>
   );
 }
+
+const ServiceCategoriesHList = () => {
+  const { data: categories } = useQuery(trpc.service.category.getCategories.queryOptions());
+
+  return (
+    <View>
+      {categories?.map((category) => (
+        <Text key={category.slug}>{category.name}</Text>
+      ))}
+    </View>
+  );
+};

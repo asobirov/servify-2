@@ -13,6 +13,56 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: app/(drawer)/index.tsx:53
+#: src/app/(tabs)/(home)/_layout.tsx:21
+#: src/app/(tabs)/_layout.tsx:9
+#: src/app/(tabs)/appointments/_layout.tsx:21
+msgid "Home"
+msgstr "Bosh sahifa"
+
+#: src/app/(tabs)/(home)/index.tsx:48
 msgid "System Status"
-msgstr ""
+msgstr "Tizim holati"
+
+#: src/app/(tabs)/(profile)/_layout.tsx:25
+#: src/app/(tabs)/_layout.tsx:17
+msgid "Profile"
+msgstr "Profil"
+
+#: src/app/(tabs)/(profile)/_layout.tsx:36
+msgid "Settings"
+msgstr "Sozlamalar"
+
+#: src/app/(tabs)/(profile)/_layout.tsx:42
+#: src/app/(tabs)/(profile)/settings/index.tsx:27
+msgid "Appearance"
+msgstr "Ko'rinish"
+
+#: src/app/(tabs)/(profile)/_layout.tsx:48
+#: src/app/(tabs)/(profile)/settings/index.tsx:32
+msgid "App Language"
+msgstr "Ilova tili"
+
+#: src/app/(tabs)/(profile)/_layout.tsx:54
+#: src/app/(tabs)/(profile)/settings/index.tsx:37
+msgid "Notifications"
+msgstr "Bildirishnomalar"
+
+#: src/app/(tabs)/(profile)/settings/appearance.tsx:43
+msgid "System"
+msgstr "Tizim"
+
+#: src/app/(tabs)/(profile)/settings/appearance.tsx:45
+msgid "{currentTheme}"
+msgstr "{currentTheme}"
+
+#: src/app/(tabs)/(profile)/settings/language.tsx:47
+msgid "{language}"
+msgstr "{language}"
+
+#: src/app/(tabs)/_layout.tsx:13
+msgid "Appointments"
+msgstr "Jadvallar"
+
+#: src/app/(tabs)/auth/_layout.tsx:14
+msgid "Auth"
+msgstr "Autentifikatsiya"

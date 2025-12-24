@@ -1,25 +1,17 @@
 {
+  "extends": "@servify/tsconfig/base.json",
   "compilerOptions": {
-    "strict": true,
-    "esModuleInterop": true,
-    "jsx": "react-jsx",
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "verbatimModuleSyntax": true,
-    "skipLibCheck": true,
+    "lib": ["ES2022", "dom", "dom.iterable"],
+
+    "jsx": "preserve",
     "types": ["vite/client"],
     "rootDirs": ["."],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@/env": ["./env.ts"]
-    },
-    "outDir": "dist"
+    }
   },
-  "references": [
-    { "path": "../../packages/auth" },
-    { "path": "../../packages/db" },
-    { "path": "../../packages/api" }
-  ]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

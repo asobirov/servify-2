@@ -3,27 +3,34 @@
   "type": "module",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "default": "./src/index.ts"
-    },
-    "./*": {
-      "default": "./src/*.ts"
     }
   },
-  "scripts": {},
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc -b",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
   "dependencies": {
     "@ai-sdk/google": "catalog:",
     "@servify/auth": "workspace:*",
     "@servify/db": "workspace:*",
+    "@servify/i18n": "workspace:*",
     "@trpc/client": "catalog:",
     "@trpc/server": "catalog:",
     "@types/pg": "catalog:",
     "ai": "catalog:",
     "drizzle-orm": "catalog:",
     "hono": "catalog:",
+    "negotiator": "^1.0.0",
+    "superjson": "^2.2.6",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@servify/config": "workspace:*",
+    "@servify/tsconfig": "workspace:*",
+    "@types/negotiator": "^0.6.4",
     "typescript": "catalog:"
   }
 }

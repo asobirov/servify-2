@@ -7,14 +7,14 @@
     "./env": "./env.ts"
   },
   "scripts": {
-    "db:push": "bun with-env bun drizzle-kit push",
-    "db:generate": "bun with-env bun drizzle-kit generate",
-    "db:studio": "bun with-env bun drizzle-kit studio",
-    "db:migrate": "bun with-env bun drizzle-kit migrate",
-    "db:start": "bun with-env bun docker compose up -d",
-    "db:watch": "bun with-env bun docker compose up",
-    "db:stop": "bun with-env bun docker compose stop",
-    "db:down": "bun with-env bun docker compose down",
+    "build": "tsc -b",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc -b",
+    "push": "bun with-env bun drizzle-kit push",
+    "generate": "bun with-env bun drizzle-kit generate",
+    "studio": "bun with-env bun drizzle-kit studio",
+    "migrate": "bun with-env bun drizzle-kit migrate",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
@@ -24,7 +24,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@servify/config": "workspace:*",
+    "@servify/tsconfig": "workspace:*",
     "@types/pg": "catalog:",
     "dotenv-cli": "catalog:",
     "drizzle-kit": "^0.31.8",
