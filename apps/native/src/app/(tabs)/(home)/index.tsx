@@ -9,6 +9,7 @@ import { ContainerView } from "@/components/container";
 import { SignIn } from "@/components/sign-in";
 import { SignUp } from "@/components/sign-up";
 import { authClient } from "@/lib/auth-client";
+import { useSelectedCategory } from "@/store/service/category/use-selected-category";
 import { cn } from "@/utils/cn";
 import { queryClient, trpc } from "@/utils/trpc";
 
@@ -126,14 +127,49 @@ const ServiceCategoriesHList = ({ className }: { className?: string }) => {
         showsVerticalScrollIndicator={false}
         contentContainerClassName={cn("px-4")}
         className={className}
-        renderItem={({ item, index }) => (
-          <View className={cn("pr-2")} key={item.slug}>
-            <Chip variant="secondary" color="default" size="lg" className="h-8">
-              {item.name}
-            </Chip>
-          </View>
+        keyExtractor={(item) => item.slug}
+        renderItem={({ item }) => (
+          <ServiceCategoryChip name={item.name} slug={item.slug} isActive={item.isActive} />
         )}
       />
     </>
+  );
+};
+
+const ServiceCategoryChip = ({
+  name,
+  slug,
+  isActive,
+}: {
+  name: string;
+  slug: string;
+  isActive: boolean;
+}) => {
+  const { selectedCategorySlug, setSelectedCategorySlug } = useSelectedCategory();
+
+  const handleCategorySelect = (categorySlug: string) => {
+    if (categorySlug === selectedCategorySlug) {
+      setSelectedCategorySlug(null);
+      return;
+    }
+
+    setSelectedCategorySlug(categorySlug);
+  };
+
+  const isSelected = selectedCategorySlug === slug;
+
+  return (
+    <View className={cn("pr-2")}>
+      <Chip
+        color="default"
+        disabled={isActive}
+        variant="primary"
+        size="lg"
+        className="h-8"
+        onPress={() => handleCategorySelect(slug)}
+      >
+        {name}
+      </Chip>
+    </View>
   );
 };
