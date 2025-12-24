@@ -11,10 +11,6 @@
     "check-types": "tsc --noEmit",
     "with-env": "dotenv -e ../../.env --"
   },
-  "imports": {
-    "@/*": "./src/*",
-    "@/env": "./env.ts"
-  },
   "dependencies": {
     "@ai-sdk/react": "catalog:",
     "@base-ui/react": "^1.0.0",
