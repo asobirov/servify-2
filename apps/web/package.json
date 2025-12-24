@@ -8,8 +8,12 @@
     "build": "bun with-env bun vite build",
     "serve": "bun with-env bun vite preview",
     "start": "bun with-env bun vite",
-    "check-types": "bun with-env bun tsc --noEmit",
+    "check-types": "tsc --noEmit",
     "with-env": "dotenv -e ../../.env --"
+  },
+  "imports": {
+    "@/*": "./src/*",
+    "@/env": "./env.ts"
   },
   "dependencies": {
     "@ai-sdk/react": "catalog:",
