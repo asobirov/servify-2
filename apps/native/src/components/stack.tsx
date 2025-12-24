@@ -20,7 +20,7 @@ const DEFAULT_STACK_HEADER = ({
     ? {}
     : {
         contentStyle: {
-          backgroundColor: "backgroundColor",
+          backgroundColor: backgroundColor,
         },
         headerTransparent: true,
         headerBlurEffect: isLiquidGlassAvailable ? undefined : "systemChromeMaterial",
@@ -61,7 +61,6 @@ export function Stack({
   const backgroundColor = useThemeColor("background");
 
   const processedChildren = React.Children.map(children, (child: React.ReactNode) => {
-    console.log("isLiquidGlassAvailable", isLiquidGlassAvailable());
     if (!React.isValidElement<StackScreenProps>(child)) {
       return child;
     }
@@ -81,7 +80,7 @@ export function Stack({
         options: {
           presentation: "modal",
           headerLargeTitle: false,
-          headerLeft: () => (
+          headerRight: () => (
             <Pressable onPress={() => router.back()}>
               <View className="flex items-center justify-center">
                 <StyledIonicons name="close-circle" size={20} className="text-foreground" />
@@ -92,7 +91,6 @@ export function Stack({
         },
       });
     }
-
     return child;
   });
 

@@ -19,9 +19,10 @@ export default function HomeLayout() {
         name="index"
         options={{
           headerTitle: t`Home`,
+          //   headerLargeTitle: true,
           headerRight: () => <ThemeToggle />,
           headerLeft: () => (
-            <Link href="/modal" asChild>
+            <Link href="/(tabs)/(home)/modal" asChild>
               <Pressable className="flex items-center justify-center">
                 <View key="modal" className={"items-center justify-center"}>
                   <StyledIonicons

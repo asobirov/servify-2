@@ -1,10 +1,12 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useLingui } from "@lingui/react/macro";
 import { GlassContainer } from "expo-glass-effect";
+import { Redirect } from "expo-router";
 import { Pressable } from "react-native";
 import { withUniwind } from "uniwind";
 
 import { Stack } from "@/components/stack";
+import { authClient } from "@/lib/auth-client";
 
 const StyledIonicons = withUniwind(Ionicons);
 const StyledGlassContainer = withUniwind(GlassContainer);
@@ -17,8 +19,7 @@ export default function ProfileLayout() {
       <Stack.Screen
         name="index"
         options={{
-          headerTitle: t`Profile`,
-          //   headerLargeTitle: true,
+          headerTitle: "",
           headerRight: () => <ProfileHeaderRight />,
         }}
       />

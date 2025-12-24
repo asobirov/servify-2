@@ -1,11 +1,9 @@
 import "@/polyfills";
 import "@/global.css";
-import { Stack } from "expo-router";
 import { useThemeColor } from "heroui-native";
-import { Animated, View } from "react-native";
-import { withUniwind } from "uniwind";
 
 import { Providers } from "@/components/providers";
+import { Stack } from "@/components/stack";
 
 export const unstable_settings = {
   initialRouteName: "(tabs)",
@@ -25,12 +23,10 @@ function StackLayout() {
       }}
     >
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="modal" options={{ title: "Modal", presentation: "modal" }} />
+      <Stack.Screen name="modal" modal options={{ title: "Modal", presentation: "modal" }} />
     </Stack>
   );
 }
-
-const AnimatedView = withUniwind(Animated.View);
 
 export default function Layout() {
   return (

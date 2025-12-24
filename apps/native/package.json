@@ -71,8 +71,11 @@
     "tailwindcss": "~4.1.17",
     "tailwindcss-animate": "^1.0.7",
     "uniwind": "^1.0.4",
+    "zeego": "^3.0.6",
     "zod": "catalog:",
-    "zustand": "^5.0.9"
+    "zustand": "^5.0.9",
+    "react-native-ios-context-menu": "3.2.0",
+    "react-native-ios-utilities": "5.2.0"
   },
   "devDependencies": {
     "@lingui/babel-plugin-lingui-macro": "catalog:lingui",
@@ -84,5 +87,8 @@
     "@types/react": "~19.1.0",
     "babel-preset-expo": "^54.0.9",
     "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "@react-native-menu/menu": "1.2.2"
   }
 }

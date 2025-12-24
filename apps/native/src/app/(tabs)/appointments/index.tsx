@@ -1,9 +1,9 @@
 import { Card } from "heroui-native";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 import { Container } from "@/components/container";
 
-export default function TabTwo() {
+export default function Appointments() {
   return (
     <Container className="p-6">
       <View className="flex-1 justify-center items-center">

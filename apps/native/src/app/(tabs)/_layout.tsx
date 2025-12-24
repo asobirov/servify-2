@@ -9,9 +9,9 @@ export default function TabLayout() {
         <Label hidden>{t`Home`}</Label>
         <Icon sf={"house"} />
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="two">
-        <Label hidden>{t`Explore`}</Label>
-        <Icon sf={"compass.drawing"} />
+      <NativeTabs.Trigger name="appointments">
+        <Label hidden>{t`Appointments`}</Label>
+        <Icon sf={"calendar"} />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="(profile)">
         <Label hidden>{t`Profile`}</Label>
