@@ -29,10 +29,29 @@ export default function ProfileLayout() {
           headerRight: () => <ProfileHeaderRight />,
         }}
       />
+
       <Stack.Screen
         name="settings/index"
         options={{
-          headerTitle: "Settings",
+          headerTitle: t`Settings`,
+        }}
+      />
+      <Stack.Screen
+        name="settings/appearance"
+        options={{
+          headerTitle: t`Appearance`,
+        }}
+      />
+      <Stack.Screen
+        name="settings/language"
+        options={{
+          headerTitle: t`App Language`,
+        }}
+      />
+      <Stack.Screen
+        name="settings/notifications"
+        options={{
+          headerTitle: t`Notifications`,
         }}
       />
     </Stack>
