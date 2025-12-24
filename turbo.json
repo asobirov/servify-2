@@ -10,8 +10,11 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
+    "transit": {
+      "dependsOn": ["^transit"]
+    },
     "check-types": {
-      "dependsOn": ["^check-types"]
+      "dependsOn": ["transit"]
     },
     "dev": {
       "cache": false,
