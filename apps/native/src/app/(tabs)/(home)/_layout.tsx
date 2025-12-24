@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useLingui } from "@lingui/react/macro";
 import { Link } from "expo-router";
 import { Pressable } from "react-native";
-import Animated from "react-native-reanimated";
+import { View } from "react-native";
 import { withUniwind } from "uniwind";
 
 import { Stack } from "@/components/stack";
@@ -24,13 +24,13 @@ export default function HomeLayout() {
           headerLeft: () => (
             <Link href="/(tabs)/(home)/modal" asChild>
               <Pressable className="flex items-center justify-center">
-                <Animated.View key="modal" className={"items-center justify-center"}>
+                <View key="modal" className={"items-center justify-center"}>
                   <StyledIonicons
                     name="information-circle-outline"
                     size={20}
                     className="text-foreground"
                   />
-                </Animated.View>
+                </View>
               </Pressable>
             </Link>
           ),

@@ -1,6 +1,5 @@
 import { useLingui } from "@lingui/react/macro";
 import { Icon, Label, NativeTabs } from "expo-router/unstable-native-tabs";
-import { View } from "react-native";
 
 export default function TabLayout() {
   const { t } = useLingui();
@@ -13,6 +12,10 @@ export default function TabLayout() {
       <NativeTabs.Trigger name="two">
         <Label hidden>{t`Explore`}</Label>
         <Icon sf={"compass.drawing"} />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="(profile)">
+        <Label hidden>{t`Profile`}</Label>
+        <Icon sf={"person"} />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="search" role="search">
         <Label>Search</Label>
