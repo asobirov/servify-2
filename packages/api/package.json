@@ -2,28 +2,28 @@
   "name": "@servify/api",
   "type": "module",
   "exports": {
-    ".": {
-      "default": "./src/index.ts"
-    },
-    "./*": {
-      "default": "./src/*.ts"
-    }
+    ".": "./src/trpc.ts",
+    "./*": "./src/*.ts"
   },
   "scripts": {},
   "dependencies": {
     "@ai-sdk/google": "catalog:",
     "@servify/auth": "workspace:*",
     "@servify/db": "workspace:*",
+    "@servify/i18n": "workspace:*",
     "@trpc/client": "catalog:",
     "@trpc/server": "catalog:",
     "@types/pg": "catalog:",
     "ai": "catalog:",
     "drizzle-orm": "catalog:",
     "hono": "catalog:",
+    "negotiator": "^1.0.0",
+    "superjson": "^2.2.6",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@servify/config": "workspace:*",
+    "@types/negotiator": "^0.6.4",
     "typescript": "catalog:"
   }
 }

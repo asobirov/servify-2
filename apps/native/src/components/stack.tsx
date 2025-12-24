@@ -35,6 +35,8 @@ const DEFAULT_STACK_HEADER = ({
           color: headerTextColor,
         },
         headerLargeTitleStyle: { color: headerTextColor },
+
+        headerBackButtonDisplayMode: "minimal",
       };
 
 /** Create a bottom sheet on iOS with extra snap points (`sheetAllowedDetents`) */
