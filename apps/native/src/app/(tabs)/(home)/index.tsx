@@ -3,22 +3,18 @@ import { LegendList } from "@legendapp/list";
 import { Trans } from "@lingui/react/macro";
 import { useQuery } from "@tanstack/react-query";
 import { Card, Chip, useThemeColor } from "heroui-native";
-import { Text, View, Pressable, ScrollView } from "react-native";
+import { Text, View, ScrollView } from "react-native";
 
 import { ContainerView } from "@/components/container";
-import { SignIn } from "@/components/sign-in";
-import { SignUp } from "@/components/sign-up";
-import { authClient } from "@/lib/auth-client";
 import { useSelectedCategory } from "@/store/service/category/use-selected-category";
 import { cn } from "@/utils/cn";
-import { queryClient, trpc } from "@/utils/trpc";
+import { trpc } from "@/utils/trpc";
 
 export default function Home() {
   const healthCheck = useQuery(trpc.healthCheck.queryOptions());
   const privateData = useQuery(trpc.privateData.queryOptions());
   const isConnected = healthCheck?.data === "OK";
   const isLoading = healthCheck?.isLoading;
-  const { data: session } = authClient.useSession();
 
   const mutedColor = useThemeColor("muted");
   const successColor = useThemeColor("success");
@@ -28,24 +24,6 @@ export default function Home() {
     <ScrollView className="flex-1 bg-background">
       <ServiceCategoriesHList className="mb-4" />
       <ContainerView>
-        {session?.user ? (
-          <Card variant="secondary" className="mb-6 p-4">
-            <Text className="text-foreground text-base mb-2">
-              Welcome, <Text className="font-medium">{session.user.name}</Text>
-            </Text>
-            <Text className="text-muted text-sm mb-4">{session.user.email}</Text>
-            <Pressable
-              className="bg-danger py-3 px-4 rounded-lg self-start active:opacity-70"
-              onPress={() => {
-                authClient.signOut();
-                queryClient.invalidateQueries();
-              }}
-            >
-              <Text className="text-foreground font-medium">Sign Out</Text>
-            </Pressable>
-          </Card>
-        ) : null}
-
         <Card variant="secondary" className="p-4">
           <View className="flex-row items-center justify-between mb-4">
             <Card.Title>
@@ -94,13 +72,6 @@ export default function Home() {
             ))}
           </Card.Description>
         </Card>
-
-        {!session?.user && (
-          <>
-            <SignIn />
-            <SignUp />
-          </>
-        )}
       </ContainerView>
     </ScrollView>
   );
