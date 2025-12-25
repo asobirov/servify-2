@@ -1,4 +1,4 @@
-import { Stack } from "expo-router";
+import { Stack } from "@/components/stack";
 
 export default function SearchLayout() {
   return (
